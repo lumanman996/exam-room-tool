@@ -13,7 +13,7 @@ import threading
 import time
 from http.server import BaseHTTPRequestHandler,ThreadingHTTPServer
 from urllib.parse import urlparse,unquote
-from . import VERSION,HOMEPAGE,paths,engine,report,importer,updater,numbering,rooms,changes,printing,exporting,transactions,bulk,subjects,seat_labels
+from . import VERSION,HOMEPAGE,paths,engine,report,importer,updater,numbering,rooms,changes,printing,exporting,transactions,bulk,subjects,seat_labels,errors
 from .model import new_plan,normalize_plan,generate_numbers,demo_plan,uid,ENTITY_DEFAULTS
 from .validation import grade_scope_issues
 from .storage import Store
@@ -265,7 +265,7 @@ class App:
 
     def api_plan_import(self,b):
         try:p=normalize_plan(json.loads(base64.b64decode(b['data']).decode('utf-8-sig')))
-        except Exception as e:raise ValueError('方案文件无法读取：'+str(e))
+        except Exception as e:raise ValueError('方案文件无法读取：'+(str(e) if errors.is_user_message(e) else '文件内容不是本软件导出的考试方案。'))
         # Import is always a new local copy, preventing unintended overwrite.
         p['id']=uid();p['name']+='（导入）';p['revision']=0;p['edit_history']=[];p['history']=[];p['number_history']=[];return self.commit(p)
 
@@ -372,7 +372,7 @@ class App:
                         q['stale']=list(stale);self.commit(q,label={'schedule':'自动安排考试日程','seats':'自动编排座位','invigilators':'自动安排监考'}[kind])
                     self.task.update(state='done',status=result['status'],message=result.get('message','编排完成'),unfilled=result.get('unfilled',[]),proved_minimum=result.get('proved_minimum',False),elapsed=round(time.time()-self.task['started'],2))
             except Exception as e:
-                with self.lock:self.task.update(state='error',status='error',message=str(e))
+                with self.lock:self.task.update(state='error',status='error',message=errors.user_message(e))
         threading.Thread(target=run,daemon=True).start();return self.task
 
     def api_task(self,b):return dict(task=self.task,view=self.view() if self.task and self.task['state']!='running' else None)
@@ -453,7 +453,7 @@ def start(app=None,port=0):
                 body=json.loads(self.rfile.read(length) or b'{}')
                 with app.lock:data=fn(body)
                 blob=dict(ok=True,data=data)
-            except Exception as e:blob=dict(ok=False,error=str(e),license=isinstance(e,PermissionError))
+            except Exception as e:blob=dict(ok=False,error=errors.user_message(e),license=isinstance(e,PermissionError) and e.errno is None)
             self.send(200,json.dumps(blob,ensure_ascii=False,allow_nan=False).encode(),'application/json; charset=utf-8')
     httpd=LocalHTTPServer(('127.0.0.1',port),Handler);httpd.daemon_threads=True
     threading.Thread(target=httpd.serve_forever,daemon=True).start()

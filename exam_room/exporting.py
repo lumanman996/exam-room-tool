@@ -3,7 +3,7 @@ from copy import deepcopy
 from pathlib import Path
 import threading
 import time
-from . import report,printing
+from . import errors,report,printing
 from .model import uid
 
 
@@ -70,5 +70,5 @@ def start(app,body):
         except Cancelled as e:
             with app.lock:app.export_task.update(state='cancelled',phase='cancelled',message=str(e))
         except Exception as e:
-            with app.lock:app.export_task.update(state='error',phase='error',message=str(e),error=str(e))
+            with app.lock:app.export_task.update(state='error',phase='error',message=errors.user_message(e),error=errors.user_message(e))
     threading.Thread(target=run,daemon=True).start();return deepcopy(app.export_task)

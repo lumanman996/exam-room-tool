@@ -142,6 +142,40 @@ def test_special_seating_contains_only_participants():
     assert q['seats']['base']=={}
 
 
+def special_only_plan(rooms=1):
+    # 5 人参加固定座位的语文；s5 只参加单独排座的英语，固定座位下没有场次。
+    p=fixture_plan(6)
+    p['students'][5]['subjects']=['英语']
+    p['exams'].append(dict(p['exams'][0],id='en',subject='英语',start='14:00',end='15:30',special_seating=True))
+    p['settings']['slots'].append(dict(date='2026-11-01',start='14:00',end='16:00'))
+    p['rooms']+=[dict(p['rooms'][0],id=f'r{i}',code=f'{i:02}',name=f'虚构教室{i}') for i in range(2,rooms+1)]
+    return p
+
+
+def test_pupil_without_base_exam_is_not_falsely_infeasible():
+    q=good(engine.assign_seats(special_only_plan()))
+    base=q['seats']['base']
+    assert set(base)=={f's{i}' for i in range(6)}
+    assert len({(x['room_id'],x['seat']) for x in base.values()})==6
+    q=good(engine.assign_seats(q,exam_id='en'))
+    assert not (errors(q) & {'seat_missing','seat_invalid','seat_duplicate','room_overlap','mixed_grade','capacity'})
+
+
+def test_pupil_without_base_exam_does_not_take_a_whole_room():
+    q=good(engine.assign_seats(special_only_plan(rooms=2)))
+    assert {x['room_id'] for x in q['seats']['base'].values()}=={'r1'}
+
+
+def test_pupil_without_base_exam_reuses_seats_of_seated_special_exam():
+    p=special_only_plan()
+    p['students'][0]['subjects']=['语文','英语']
+    p=good(engine.assign_seats(p,exam_id='en'))
+    assert len(p['seats']['en'])==6
+    q=good(engine.assign_seats(p))
+    assert len({(x['room_id'],x['seat']) for x in q['seats']['base'].values()})==6
+    assert not (errors(q) & {'seat_missing','seat_invalid','seat_duplicate','room_overlap','mixed_grade'})
+
+
 def test_class_seating_avoids_same_desk_where_possible():
     p=fixture_plan(6)
     p['rooms'][0].update(rows=1,cols=3,per_desk=2)

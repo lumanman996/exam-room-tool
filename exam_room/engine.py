@@ -488,7 +488,7 @@ def assign_seats(plan,cancel=None,progress=None,exam_id=None):
             room_vars=[]
             for seat in layouts[rid]:
                 number=seat['seat']
-                if any(pos.get('room_id')==rid and pos.get('seat')==number and _cohort_conflict(events,(other,)) for s,other,pos in external): continue
+                if events and any(pos.get('room_id')==rid and pos.get('seat')==number and _cohort_conflict(events,(other,)) for s,other,pos in external): continue
                 v=model.new_bool_var(f'seat_{gi}_{rid}_{number}')
                 variables[gi,rid,number]=v;room_vars.append(v);all_vars.append(v);position_groups[rid,number].append((gi,v))
                 if (rid,number) in locked_positions: model.add(v==1)
@@ -504,7 +504,8 @@ def assign_seats(plan,cancel=None,progress=None,exam_id=None):
             if _cohort_conflict(groups[a][0][1],groups[b][0][1]): model.add(x+y<=1)
     for a,b in combinations(range(len(groups)),2):
         (ga,ea),_ = groups[a];(gb,eb),_=groups[b]
-        incompatible=not ea or not eb or any(not _compatible(plan,ga,x,gb,y) for x in ea for y in eb)
+        # 固定座位下没有场次的学生只需不重复的座号来生成考号，不会在场内同时考试，可与任何组同场。
+        incompatible=bool(ea and eb) and any(not _compatible(plan,ga,x,gb,y) for x in ea for y in eb)
         if incompatible:
             for r in rooms:
                 rid=r['id']

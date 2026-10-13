@@ -1,6 +1,6 @@
 # 考场编排视觉与交互规范
 
-状态：2026-10-07 已完成本轮前端源码实现、针对性浏览器验证及稳定源码 full 验收，继续冻结。完整交互、输出排版和验收标准见 docs/superpowers/specs/2026-10-06-frontend-design.md；实际覆盖与未运行范围见 docs/前端进展.md。Mac／Windows 原生桌面及最终包仍待平台验收。
+完整交互、输出排版和验收标准见 [docs/设计/2026-10-06-frontend-design.md](docs/设计/2026-10-06-frontend-design.md)。
 
 ## 场景与视觉方向
 

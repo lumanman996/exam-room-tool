@@ -8,9 +8,8 @@
 |---|---|
 | 中文产品名 | 考场编排 |
 | 英文项目名 | exam-room-tool |
-| 项目目录 | /Users/luman/exam-room-tool |
 
-当前开发版本为 1.1.0。本轮改进和验收状态见 [功能验收清单](docs/本轮功能验收清单.md)，Windows 试用安排见 [实机测试清单](docs/Windows实机测试清单.md)。已经实现的本机开发版基础能力：
+当前开发版本为 1.2.0，进度见 [交付状态](docs/交付状态.md)，重要决定见 [决策记录](docs/决策记录.md)，Windows 实机测试安排见 [实机测试清单](docs/Windows实机测试清单.md)。已经实现的本机开发版基础能力：
 
 - Python 3.12 + pywebview 桌面入口，本机 HTTP 服务只监听 `127.0.0.1`。
 - 新建考试第一步填写年级数量和名称；导入、年级混排、考号和打印范围都使用本次考试的年级清单。自定义混排组可具名保存并再次选择。
@@ -21,11 +20,11 @@
 - 明暗主题跟随系统、可增减字号、资料搜索分页、人工调整及未保存编辑保护。
 - 独立试用和激活模块、更新检查接口、Windows / Mac PyInstaller 构建脚本。
 
-文档：[数据协议](docs/数据协议.md)、[使用手册](docs/使用手册.md)、[验收记录](docs/验收记录.md)、[发布流程](docs/发布流程.md)。
+文档：[数据协议](docs/数据协议.md)、[使用手册](docs/使用手册.md)、[发布流程](docs/发布流程.md)、[设计说明](docs/设计/)。
 
-开发衔接：[开发协调](docs/开发协调.md)、[前后端接口约定](docs/前后端接口约定.md)、[协调问题清单](docs/协调问题清单.md)。
+开发衔接：[前后端接口约定](docs/前后端接口约定.md)。
 
-自动验测台已实现：[测试方案](docs/验测台测试方案.md)、[36 个虚构测试场景与使用说明](testkit/README.md)。使用隔离目录实际运行接口、页面、保存重开、导出核对和规模编排；结果与未运行范围记录在每次独立报告中，详见 [测试进展](docs/测试进展.md)。
+自动验测台已实现：[测试方案](docs/验测台测试方案.md)、[36 个虚构测试场景与使用说明](testkit/README.md)。使用隔离目录实际运行接口、页面、保存重开、导出核对和规模编排；结果与未运行范围记录在每次独立报告中（`output/testbench/`）。
 
 ## 本地运行
 
@@ -63,8 +62,8 @@ uv pip install -r requirements-dev.txt --python .venv/bin/python
 
 ## 参考项目
 
-- 匀班 · 学生均衡分班：`/Users/luman/class-assignment-tool`。
-- 分寸 · 成绩核算：`/Users/luman/chengji-tool`。
+- 匀班 · 学生均衡分班：[lumanman996/class-assignment-tool](https://github.com/lumanman996/class-assignment-tool)。
+- 分寸 · 成绩核算：[lumanman996/chengji-tool](https://github.com/lumanman996/chengji-tool)。
 
 参考它们的教师使用流程、Excel 导入导出、方案或历史记录、桌面打包与测试做法。
 考场编排的参试名单、考场容量和座位规则需要独立设计。

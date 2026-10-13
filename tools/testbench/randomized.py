@@ -68,6 +68,8 @@ def make_plan(seed):
                   for a, b in (('08:00', '11:30'), ('14:00', '17:00'))]
     s.update(mode=rng.choice(['class', 'random', 'score']), seed=rng.randint(1, 10_000),
              mix_grades=rng.random() < .4, invigilators=rng.choice([1, 2]), time_limit=5)
+    # 最后再抽考号方式，前面的随机序列保持不变。
+    s['number_rule'] = rng.choice(['seat', 'serial'])
     return model.normalize_plan(p)
 
 
@@ -165,15 +167,21 @@ def check_seed(seed):
         if not step('座位' if key is None else f'单独排座{key}', result):
             return dict(seed=seed, **steps)
         p = result['plan']
-    # 按年级分别设前缀生成考号。固定座位允许时间不重叠的学生共用座位，同一年级共用时按座位编号会重号；
-    # 产品此时须给出中文提示，验测记下提示后改用流水号继续核对（已知限制，见提交说明）。
-    prefixes = {g: f'2{i + 1}' for i, g in enumerate(p['grades'])}
-    try:
-        p = numbering.apply(p, prefixes=prefixes, overwrite=True)
-    except ValueError as exc:
-        assert errors.is_user_message(exc), f'考号提示不是中文：{exc}'
-        steps['考号按座位'] = str(exc)
+    rule = engine.number_rule(p)
+    steps['考号方式'] = rule
+    base = p['seats'].get('base', {})
+    special_only = {s['id'] for s in p['students']} - {s['id'] for e in p['exams'] if not e.get('special_seating')
+                                                       for s in engine.participants(p, e)}
+    if rule == 'seat':
+        # 按考场座位：人人独占固定座位，同一前缀生成考号也必须不重复。
+        taken = Counter((x['room_id'], x['seat']) for x in base.values())
+        assert all(n == 1 for n in taken.values()), '按考场座位方式下有学生共用固定座位'
+        assert set(base) == {s['id'] for s in p['students']}, '按考场座位方式下有学生没有固定座位'
+        p = numbering.apply(p, prefix='26', rule='seat', overwrite=True)
+    else:
+        assert not special_only & set(base), '流水号方式下只考单独排座科目的学生占了固定座位'
         p = numbering.apply(p, prefix='26', rule='serial', overwrite=True)
+    steps['只考单独排座人数'] = len(special_only)
     result = engine.assign_invigilators(p)
     step('监考', result)
     p = result['plan']

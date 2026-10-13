@@ -50,11 +50,16 @@ def test_staggered_exams_of_different_grades_need_separate_rooms():
     assert '时间交错' in message and '至少需要 2 个考场，可用 1 个' in message
 
 
-def test_pupils_with_only_special_exams_still_need_a_fixed_seat_number():
-    p = plan();pupils(p, '七年级', 6);pupils(p, '七年级', 1, ['英语'])
+def test_seat_numbers_need_one_fixed_seat_per_pupil_and_suggest_serial_numbers():
+    # 6 人只考语文，1 人只考单独排座的英语；6 座考场。
+    p = plan();pupils(p, '七年级', 6, ['语文']);pupils(p, '七年级', 1, ['英语'])
     exam(p, 'a', '七年级', '语文', '08:00', '09:30');exam(p, 'b', '七年级', '英语', '10:00', '11:30', special=True)
     message = seats_message(p)
-    assert '7 名学生需要各自不同的座位（其中 1 人只参加单独排座的科目，仍需固定座号来生成考号）' in message
+    assert '按考场座位生成考号时每人独占一个固定座位：共 7 人，全部考场只有 6 个座位' in message
+    assert '改用流水号' in message
+    p['settings']['number_rule'] = 'serial'
+    result = engine.assign_seats(p)
+    assert result['status'] in ('optimal', 'feasible') and 's6' not in result['plan']['seats']['base']
 
 
 def test_exam_longer_than_any_allowed_slot_is_named():

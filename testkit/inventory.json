@@ -267,8 +267,8 @@
     },
     {
       "path": "fixtures/C27_nonoverlap_reuse/方案.json",
-      "bytes": 10904,
-      "sha256": "57ed022f94146b172a357888accab92a83977eaf8eb270acee4bc6da8a58e7bb"
+      "bytes": 10906,
+      "sha256": "f25f0ebf44c92fe91fa5752873c8e22138ada22e4d6080eed57d0998bf4c0b8d"
     },
     {
       "path": "fixtures/imports/不支持版本.json",

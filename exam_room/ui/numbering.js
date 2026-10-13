@@ -32,6 +32,34 @@ function resetNumberPreview() {
     ? '前缀＋流水号；自动跳过已使用的号码。'
     : '前缀后接两位考场编号和两位座位号。例如 26＋03＋08 → 260308。';
 }
+// 考号方式只有一个值：座位页和考号生成里的两个选择都直接保存到方案的 number_rule。
+function syncNumberRule() {
+  const rule = view?.plan?.settings?.number_rule === 'serial' ? 'serial' : 'seat';
+  $('seatNumberRule').value = rule;
+  if ($('numberRule').value !== rule) {
+    $('numberRule').value = rule;
+    resetNumberPreview();
+  }
+}
+async function setNumberRule(value) {
+  const rule = value === 'serial' ? 'serial' : 'seat';
+  if ((view.plan.settings.number_rule === 'serial' ? 'serial' : 'seat') === rule) return syncNumberRule();
+  const p = clone(view.plan);
+  p.settings.number_rule = rule;
+  await save(p);
+  syncNumberRule();
+  toast(
+    rule === 'seat'
+      ? '考号方式已改为按考场座位：每人独占一个固定座位，考号不会重复。'
+      : '考号方式已改为流水号：时间不重叠的学生可以共用座位。'
+  );
+}
+for (const id of ['seatNumberRule', 'numberRule'])
+  $(id).onchange = () =>
+    setNumberRule($(id).value).catch(e => {
+      syncNumberRule();
+      toast(e.message, true);
+    });
 function openNumberSettings() {
   if (activePage !== 'seats') {
     Workspace.requestNavigation(() => {
@@ -110,7 +138,7 @@ async function previewNumbers() {
     if (request === numberRequest) errorAt('numberError', e);
   }
 }
-for (const id of ['numberRule', 'numberPrefix', 'numberGrade', 'numberOverwrite', 'numberWidth', 'numberStart'])
+for (const id of ['numberPrefix', 'numberGrade', 'numberOverwrite', 'numberWidth', 'numberStart'])
   $(id).oninput = resetNumberPreview;
 $('numberChangesOnly').onchange = () => {
   numberPage = 0;

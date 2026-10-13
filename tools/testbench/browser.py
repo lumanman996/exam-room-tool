@@ -183,6 +183,24 @@ def numbering_flow(page,client,root):
     return dict(swap=True,mismatch_count=2,formal_export_rejected=True,renumbered=True,unified_undo_exact=True)
 
 
+def number_rule_flow(page,client,root):
+    """座位页与考号生成里的考号方式是同一个设置：任一处修改都立即保存并同步另一处。"""
+    from playwright.sync_api import expect
+    open_plan(page,client,'C01_tiny_completed');navigate(page,'seats')
+    expect(page.locator('#seatNumberRule')).to_have_value(client.call('state')['plan']['settings'].get('number_rule','seat'))
+    expect(page.locator('#numberRuleHelp')).to_contain_text('每人独占一个座位')
+    with page.expect_response(lambda r:urlparse(r.url).path=='/api/save'):page.locator('#seatNumberRule').select_option('serial')
+    expect(page.locator('#numberRule')).to_have_value('serial')
+    assert client.call('state')['plan']['settings']['number_rule']=='serial'
+    page.locator('#numberBtn').click();expect(page.locator('#numberSerialFields')).to_be_visible()
+    with page.expect_response(lambda r:urlparse(r.url).path=='/api/save'):page.locator('#numberRule').select_option('seat')
+    expect(page.locator('#seatNumberRule')).to_have_value('seat')
+    assert client.call('state')['plan']['settings']['number_rule']=='seat'
+    page.locator('[data-default-group="numbering"]').click();expect(page.locator('#numberRule')).to_have_value('seat')
+    page.screenshot(path=str(root/'考号方式.png'),full_page=True)
+    return dict(synced_both_ways=True,default_reset_keeps_rule=True)
+
+
 def error_recovery(page,client,root):
     from playwright.sync_api import expect
     open_plan(page,client,'C01_tiny_completed'); original=client.call('state')['plan']
@@ -280,6 +298,7 @@ def run(recorder,only=None):
         try:
             for ident,name,fn in [('WEB-normal','144人实际页面上传至Excel/PDF',normal_flow),
                     ('WEB-numbering','页面换座、考号提示、生成及撤销',numbering_flow),
+                    ('WEB-number-rule','座位页与考号生成共用同一考号方式',number_rule_flow),
                     ('WEB-recovery','坏文件页面拒绝及继续编辑',error_recovery),
                     ('WEB-time-layout','时间输入、草稿保留、布局与停用',time_layout),
                     ('WEB-preferences','1500人搜索分页、主题字号和小窗口',preferences_large),

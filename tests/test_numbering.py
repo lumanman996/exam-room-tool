@@ -62,12 +62,15 @@ def test_invalid_location_blocks_whole_batch(kind):
     assert p==old
 
 
-def test_grade_scope_and_reused_seat_do_not_silently_make_duplicates():
+def test_reused_seat_is_rejected_for_seat_numbers_even_with_grade_prefixes():
+    # 按考场座位编考号时每人独占固定座位；共用座位说明是按流水号方式排的，分年级前缀也不放行。
     p=seated();p['seats']['base']['b']['seat']=8
-    assert numbers().preview(p,prefix='26')['errors']
-    q=numbers().apply(p,prefix='26',grade='七年级')
-    q=numbers().apply(q,prefix='27',grade='八年级')
-    assert [s['number'] for s in q['students']]==['260308','270308']
+    for options in (dict(prefix='26'),dict(prefix='26',grade='七年级'),dict(prefixes={'七年级':'26','八年级':'27'})):
+        codes=[x['code'] for x in numbers().preview(p,**options)['errors']]
+        assert codes[0]=='number_rule_mismatch',(options,codes)
+        with pytest.raises(ValueError,match='请重新编排座位，或改用流水号'):numbers().apply(p,**options)
+    q=numbers().apply(p,prefix='26',rule='serial',overwrite=True)
+    assert len({s['number'] for s in q['students']})==2 and q['settings']['number_rule']=='serial'
 
 
 def test_source_detects_base_changes_but_not_subject_only_changes():

@@ -50,3 +50,16 @@ test('workflow asks for formal grade scope before interpreting imported students
   const next=nextStep({plan:{...plan,grades:[]},validation:{errors:[],warnings:[]}});
   assert.equal(next.grades,true);assert.equal(next.label,'设置本次考试年级');
 });
+
+test('fixed seats follow the chosen number rule', () => {
+  const {fixedSeatStudents} = require('../../exam_room/ui/workspace.js');
+  // s2 只考数学但七年级没有数学考试；s3 只参加单独排座的 e2。
+  const base = {...plan, settings: {}, seats: {base: {s1: {room_id: 'r1', seat: 1}}}};
+  assert.deepEqual(fixedSeatStudents(base).map(s => s.id), ['s1', 's2', 's3'], '旧方案缺字段按考场座位处理');
+  const serial = {...base, settings: {number_rule: 'serial'}};
+  assert.deepEqual(fixedSeatStudents(serial).map(s => s.id), ['s1']);
+  assert.deepEqual(seatContext(serial, 'base').students.map(s => s.id), ['s1']);
+  const done = {...serial, teachers: [{id: 't1'}], students: serial.students.map(s => ({...s, number: s.number || 'x'}))};
+  assert.ok(['check', 'export'].includes(nextStep({plan: done}).page), '流水号方式下只考单独排座的学生不算未排座');
+  assert.equal(nextStep({plan: {...done, settings: {number_rule: 'seat'}}}).label, '编排学生座位');
+});

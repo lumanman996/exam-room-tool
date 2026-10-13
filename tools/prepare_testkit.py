@@ -246,8 +246,10 @@ def build_cases():
             dict(teacher_id=f't{offset+k+1:02}', locked=False) for k in range(2)]
     p['settings']['slots'].extend(dict(date=d, start=a, end=b)
         for d in ('2026-11-14','2026-11-15') for a,b in (('08:30','10:30'),('14:00','16:00')))
+    # 1.2.0 起只有流水号方式允许时间不重叠的学生共用固定座位；按考场座位方式每人独占座位。
+    p['settings']['number_rule'] = 'serial'
     add('C27_nonoverlap_reuse', '非重叠时段复用座位', p,
-        ['检查不同日期同位置合法', '分别按001和008前缀保留号码', '导出材料核对日期'], clean=True, golden_file=True, exam_rows=36)
+        ['流水号方式下检查不同日期同位置合法', '分别按001和008前缀保留号码', '导出材料核对日期'], clean=True, golden_file=True, exam_rows=36)
     return cases, plans
 
 

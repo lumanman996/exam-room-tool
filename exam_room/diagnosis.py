@@ -140,8 +140,8 @@ def seats(plan, exam_id=None):
         base = [x for x in exams if not x.get('special_seating')]
         members = {x['id']: {s['id'] for s in e.participants(plan, x)} for x in base}
         cohorts = defaultdict(int)
-        for s in plan.get('students', []):
-            # 没有固定座位场次的学生也要一个不重复的座号来生成考号。
+        need = e.fixed_seat_students(plan)
+        for s in need:
             cohorts[s.get('grade', ''), tuple(sorted(e._event(x) for x in base if s['id'] in members[x['id']]))] += 1
         ordered = sorted(cohorts, key=lambda c: -cohorts[c])
         all_caps = [c for c in caps.values() if c]
@@ -159,12 +159,15 @@ def seats(plan, exam_id=None):
             desc = '、'.join(f'{c[0]}{cohorts[c]}人' for c in apart[:4])
             hints.append(f'固定座位下有 {len(apart)} 组学生（{desc}）的考试时间互相交错或不能混排，'
                          f'整次考试都不能共用考场，至少需要 {needed} 个考场，只有 {len(all_caps)} 个')
-        shared = clique(lambda a, b: e._cohort_conflict(a[1], b[1]))
-        total = sum(cohorts[c] for c in shared)
-        if total > sum(all_caps):
-            idle = sum(cohorts[c] for c in shared if not c[1])
-            why = f'（其中 {idle} 人只参加单独排座的科目，仍需固定座号来生成考号）' if idle else ''
-            hints.append(f'固定座位下有 {total} 名学生需要各自不同的座位{why}，全部考场只有 {sum(all_caps)} 个')
+        if e.number_rule(plan) == 'seat':
+            # 按考场座位生成考号：人人独占一个固定座位，这一条最直接，放在最前。
+            if len(need) > sum(all_caps):
+                hints.insert(0, f'按考场座位生成考号时每人独占一个固定座位：共 {len(need)} 人，全部考场只有 {sum(all_caps)} 个座位')
+        else:
+            shared = clique(lambda a, b: e._cohort_conflict(a[1], b[1]))
+            total = sum(cohorts[c] for c in shared)
+            if total > sum(all_caps):
+                hints.append(f'固定座位下有 {total} 名学生的考试时间相互重叠，需要各自不同的座位，全部考场只有 {sum(all_caps)} 个')
 
     # 5. 锁定座位和已排的单独排座都会固定占用位置。
     mapping = plan.get('seats', {}).get(exam_id or 'base', {})
@@ -178,6 +181,8 @@ def seats(plan, exam_id=None):
             hints.append(f'{len(special)} 场单独排座的考试已占用 {taken} 个座位次，同一时段这些位置不能再用')
 
     advice = '可尝试增加考场、允许相关年级混排、调整考试时间或解除部分锁定。'
+    if not exam_id and e.number_rule(plan) == 'seat':
+        advice = '可尝试增加考场，或改用流水号（时间不重叠的学生可以共用座位，更省座位）；也可允许相关年级混排、调整考试时间或解除部分锁定。'
     if not exam_id and len({e._event(x) for x in exams if not x.get('special_seating')}) > 1:
         advice +='固定座位要求学生整次考试坐同一位置；某些科目人数或时间差别大时，可将其设为单独排座。'
     return _compose('现有条件下无法完成座位编排。', hints, advice)

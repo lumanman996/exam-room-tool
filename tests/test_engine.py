@@ -110,13 +110,19 @@ def test_seating_is_complete_deterministic_and_keeps_locked(mode):
     assert set(p['seats']['base'])=={'s0'}
 
 
-def test_seating_can_reuse_seat_across_nonoverlapping_grades():
+def test_serial_numbers_reuse_seats_across_nonoverlapping_grades_but_seat_numbers_do_not():
     p=fixture_plan(12)
     for s in p['students'][6:]: s['grade']='八'
     p['exams'].append(dict(p['exams'][0],id='e2',grade='八',start='10:00',end='11:30'))
+    p['settings']['number_rule']='serial'
     q=good(engine.assign_seats(p))
     assert len(q['seats']['base'])==12
-    assert not (errors(q) & {'room_overlap','seat_duplicate','mixed_grade'})
+    assert not (errors(q) & {'room_overlap','seat_duplicate','mixed_grade','number_rule_mismatch'})
+    # 按考场座位：12 人要 12 个独占座位，6 座考场排不下，并建议改用流水号。
+    p['settings']['number_rule']='seat'
+    result=engine.assign_seats(p)
+    assert result['status']=='infeasible' and '改用流水号' in result['message']
+    assert 'number_rule_mismatch' in errors(q|{'settings':{**q['settings'],'number_rule':'seat'}})
 
 
 def test_mixing_requires_permission_and_exact_times():

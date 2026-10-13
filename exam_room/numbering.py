@@ -57,6 +57,10 @@ def preview(plan,prefix=None,overwrite=False,grade='',rule='seat',width=None,sta
     if rule not in ('seat','serial'):raise ValueError('请选择考场座位编号或流水号格式。')
     if any(ord(c)<32 for c in prefix):issue('number_prefix','考号前缀不能包含换行或控制字符。')
     if rule=='seat' and not prefix and not configured:issue('number_prefix','请填写考号前缀，通常为 2～4 位，长度可自定。')
+    if rule=='seat':
+        from .engine import seat_rule_mismatch
+        mismatch=seat_rule_mismatch({**plan,'settings':{**settings,'number_rule':'seat'}})
+        if mismatch:issue('number_rule_mismatch',mismatch)
     chosen=[s for s in plan['students'] if not grade or s['grade']==grade]
     if not chosen:
         if grade:warnings.append(dict(code='number_students',message='该年级已设置，但当前没有学生，未生成考号。'))
@@ -76,7 +80,7 @@ def preview(plan,prefix=None,overwrite=False,grade='',rule='seat',width=None,sta
         pos=plan.get('seats',{}).get('base',{}).get(sid,{})
         room=next((r for r in plan['rooms'] if r['id']==pos.get('room_id')),{})
         row=dict(student_id=sid,name=student['name'],grade=student['grade'],class_name=student['class_name'],
-                 room=room.get('name','未安排'),room_code=room.get('code',''),seat=pos.get('seat',''),
+                 room=room.get('name','无固定座位' if rule=='serial' else '未安排'),room_code=room.get('code',''),seat=pos.get('seat',''),
                  old_number=old,new_number=old,status='保留已有考号' if keep else '待生成')
         if not keep:
             try:

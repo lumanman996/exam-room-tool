@@ -296,7 +296,7 @@
     "number_prefix": "001",
     "number_width": 5,
     "number_start": 1,
-    "number_rule": "seat",
+    "number_rule": "serial",
     "slots": [
       {
         "date": "2026-11-12",

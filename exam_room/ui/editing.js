@@ -1,6 +1,8 @@
 'use strict';
 // Detached draft state and small pure helpers are shared by UI and behaviour tests.
 const Editing = (() => {
+  const fixedSeatStudents = p =>
+    (typeof WorkspaceCore !== 'undefined' ? WorkspaceCore : require('./workspace.js')).fixedSeatStudents(p);
   const copy = value => JSON.parse(JSON.stringify(value));
   const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
   function commitFieldSubset(previous, latest, ids) {
@@ -158,7 +160,8 @@ const Editing = (() => {
     if (page === 'seats')
       return !!(
         p.students?.length &&
-        p.students.every(s => p.seats?.base?.[s.id] && s.number) &&
+        p.students.every(s => s.number) &&
+        fixedSeatStudents(p).every(s => p.seats?.base?.[s.id]) &&
         clean('seats') &&
         clean('numbers')
       );
@@ -455,8 +458,8 @@ if (typeof document !== 'undefined') {
         document.querySelector('#invigilate details').classList.add('dirty');
       }
       if (group === 'numbering') {
+        // 考号方式由座位页统一选择并即时保存，不随"恢复考号参数默认"改变。
         for (const [key, id] of [
-          ['number_rule', 'numberRule'],
           ['number_prefix', 'numberPrefix'],
           ['number_width', 'numberWidth'],
           ['number_start', 'numberStart'],

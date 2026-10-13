@@ -27,11 +27,18 @@ const WorkspaceCore = (() => {
       s => s.grade === exam.grade && (!s.subjects?.length || s.subjects.includes(exam.subject))
     );
   }
+  // 与后端 engine.fixed_seat_students 一致：按考场座位编考号时人人需要固定座位；
+  // 流水号方式下只参加单独排座科目的学生不占固定座位。
+  function fixedSeatStudents(plan) {
+    if (plan.settings?.number_rule !== 'serial') return plan.students;
+    const ids = new Set(plan.exams.filter(e => !e.special_seating).flatMap(e => participants(plan, e).map(s => s.id)));
+    return plan.students.filter(s => ids.has(s.id));
+  }
   function seatContext(plan, scope = 'base') {
     const exam = plan.exams.find(e => e.id === scope);
     return {
       exam,
-      students: exam ? participants(plan, exam) : plan.students,
+      students: exam ? participants(plan, exam) : fixedSeatStudents(plan),
       mapping: (exam?.special_seating ? plan.seats[exam.id] : plan.seats.base) || {},
     };
   }
@@ -72,7 +79,7 @@ const WorkspaceCore = (() => {
         return { page: 'data', kind: key, label: '准备' + label, message: '还没有' + label + '，先导入或添加资料。' };
     if (p.exams.some(e => !e.date || !e.start || !e.end))
       return { page: 'schedule', label: '安排考试日程', message: '还有考试未填写日期或起止时间。' };
-    const missing = p.students.filter(s => !p.seats?.base?.[s.id]).length;
+    const missing = fixedSeatStudents(p).filter(s => !p.seats?.base?.[s.id]).length;
     if (missing) return { page: 'seats', label: '编排学生座位', message: `还有 ${missing} 名学生未安排固定座位。` };
     const numbers = p.students.filter(s => !s.number).length;
     if (numbers)
@@ -88,7 +95,7 @@ const WorkspaceCore = (() => {
       return { page: 'check', label: '检查并确认方案', message: '核对当前方案，处理必须修正或需要重新检查的问题。' };
     return { page: 'export', label: '导出考务材料', message: '硬性检查通过，可以核对版式并生成材料。' };
   }
-  return { filterRecords, pageRows, seatContext, occupants, nextStep, participants };
+  return { filterRecords, pageRows, seatContext, occupants, nextStep, participants, fixedSeatStudents };
 })();
 if (typeof module !== 'undefined') module.exports = WorkspaceCore;
 
@@ -411,6 +418,7 @@ if (typeof document !== 'undefined') {
       room();
       syncLayoutControls();
       $('solverLimit').value = p.settings.time_limit || 30;
+      syncNumberRule();
       modeVisibility();
       route();
       selectSeatTab(ui.seatTab);

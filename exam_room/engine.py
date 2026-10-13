@@ -93,6 +93,36 @@ def _mapping(plan, exam):
     return plan.get('seats', {}).get(_seat_key(exam), {})
 
 
+def number_rule(plan):
+    """考号方式：'seat' 按考场座位（默认，旧方案缺字段也按此处理），'serial' 流水号。"""
+    return 'serial' if plan.get('settings', {}).get('number_rule') == 'serial' else 'seat'
+
+
+def fixed_seat_students(plan):
+    """需要固定座位的学生。按考场座位编考号时人人都要（考号由固定座位生成）；
+    流水号方式下，只参加单独排座科目的学生不占固定座位。"""
+    students = plan.get('students', [])
+    if number_rule(plan) == 'seat':
+        return list(students)
+    ids = {s['id'] for e in plan.get('exams', []) if _seat_key(e) == 'base' for s in participants(plan, e)}
+    return [s for s in students if s['id'] in ids]
+
+
+def seat_rule_mismatch(plan):
+    """按考场座位编考号，但固定座位是按流水号方式排的（有人共用座位或没有固定座位）时，返回中文提示。"""
+    base = plan.get('seats', {}).get('base', {})
+    if number_rule(plan) != 'seat' or not base:
+        return None
+    ids = {s['id'] for s in plan.get('students', [])}
+    taken = Counter((pos.get('room_id'), pos.get('seat')) for sid, pos in base.items() if sid in ids)
+    shared = sum(n for n in taken.values() if n > 1)
+    missing = sum(1 for sid in ids if sid not in base)
+    if not shared and not missing:
+        return None
+    detail = '、'.join(x for x in (f'{shared} 人共用座位' if shared else '', f'{missing} 人没有固定座位' if missing else '') if x)
+    return f'当前座位按流水号方式编排（{detail}），按考场座位生成考号会重复或缺号。请重新编排座位，或改用流水号。'
+
+
 def duties(plan):
     rooms = {r['id']: r for r in plan.get('rooms', [])}
     grouped = {}
@@ -252,6 +282,8 @@ def validate(plan,include_stale=True):
     for key,mapping in plan.get('seats',{}).items():
         for sid in mapping:
             if sid not in smap: add('seat_student_unknown','座位表中含有已不存在的学生',student_id=sid,exam_id=key)
+    mismatch=seat_rule_mismatch(plan)
+    if mismatch: add('number_rule_mismatch',mismatch)
     ds=duties(plan); teacher_duties=defaultdict(list)
     for d in ds:
         placed={}
@@ -444,7 +476,12 @@ def assign_seats(plan,cancel=None,progress=None,exam_id=None):
     if key!='base' and target is None: return _result(plan,'infeasible','没有找到这场考试')
     if not rooms or not plan.get('students'): return _result(plan,'infeasible','请先添加学生和考场')
     if any(not _event(e) for e in exams): return _result(plan,'infeasible','请先安排完整的考试时间，再编排座位')
-    students=participants(plan,target) if target else plan['students']
+    # 按考场座位编考号时，固定座位人人独占、不共用，考号必定不重复；流水号方式可共用，更省座位。
+    exclusive=not target and number_rule(plan)=='seat'
+    students=participants(plan,target) if target else fixed_seat_students(plan)
+    if not students and not target:
+        q=deepcopy(plan);q.setdefault('seats',{})['base']={}
+        return _result(q,'feasible','流水号方式下没有学生需要固定座位；单独排座的科目请分别编排。')
     if not students: return _result(plan,'infeasible','这场考试没有对应学生')
     selected_ids={s['id'] for s in students}
     timelines=defaultdict(set)
@@ -503,7 +540,7 @@ def assign_seats(plan,cancel=None,progress=None,exam_id=None):
         model.add(sum(all_vars)==len(members))
     for (rid,seat),entries in position_groups.items():
         for (a,x),(b,y) in combinations(entries,2):
-            if _cohort_conflict(groups[a][0][1],groups[b][0][1]): model.add(x+y<=1)
+            if exclusive or _cohort_conflict(groups[a][0][1],groups[b][0][1]): model.add(x+y<=1)
     for a,b in combinations(range(len(groups)),2):
         (ga,ea),_ = groups[a];(gb,eb),_=groups[b]
         # 固定座位下没有场次的学生只需不重复的座号来生成考号，不会在场内同时考试，可与任何组同场。

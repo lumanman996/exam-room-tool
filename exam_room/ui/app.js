@@ -588,7 +588,7 @@ let busyTimer = null,
   taskObserver = null;
 const taskDisabled = new Map();
 const taskWriteSelectors =
-  '#globalUndo,#restoreSaved,#newBtn,#demoBtn,#importPlanBtn,#savePlanBtn,#cloneBtn,#planInfoSave,#planName,#schoolName,#importEntityBtn,#addEntityBtn,#roomBatchBtn,#bulkEditSelected,#deleteSelected,#subjectCatalogBtn,#subjectBatchBtn,#gradeDeleteSelected,#editGrades,[data-edit],[data-remove],[data-copy-room],#schedule input,#schedule button,[data-default-group],[data-drag-mode],#labelPointPreview,#labelReset,#bulkDialog input,#bulkDialog select,#bulkDialog button,#solverSettings input,#solverSave,#roomDialog input,#roomDialog select,#roomDialog button,#roomBatchDialog input,#roomBatchDialog select,#roomBatchDialog button,#formDialog input,#formDialog select,#formSave,#seatSettings input,#seatSettings select,#seatSettings button,#applyLayoutBtn,#seatBtn,#undoBtn,#numberApply,#numberUndo,#seatAdjustContent input,#seatAdjustContent select,#seatAdjustSave,#invigilatorBtn,#invigilate details input,#applySettings,#teacherAdjustContent input,#teacherAdjustContent select,#teacherAdjustSave,#confirmBtn,#printSave,[data-open],[data-delete],[data-restore],[data-recover]';
+  '#globalUndo,#restoreSaved,#newBtn,#demoBtn,#importPlanBtn,#savePlanBtn,#cloneBtn,#planInfoSave,#planName,#schoolName,#importEntityBtn,#addEntityBtn,#roomBatchBtn,#bulkEditSelected,#deleteSelected,#subjectCatalogBtn,#subjectBatchBtn,#gradeDeleteSelected,#editGrades,[data-edit],[data-remove],[data-copy-room],#schedule input,#schedule button,[data-default-group],[data-drag-mode],#labelPointPreview,#labelReset,#bulkDialog input,#bulkDialog select,#bulkDialog button,#solverSettings input,#solverSave,#roomDialog input,#roomDialog select,#roomDialog button,#roomBatchDialog input,#roomBatchDialog select,#roomBatchDialog button,#formDialog input,#formDialog select,#formSave,#seatSettings input,#seatSettings select,#seatSettings button,#applyLayoutBtn,#seatBtn,#numberApply,#numberUndo,#seatAdjustContent input,#seatAdjustContent select,#seatAdjustSave,#invigilatorBtn,#invigilate details input,#applySettings,#teacherAdjustContent input,#teacherAdjustContent select,#teacherAdjustSave,#confirmBtn,#printSave,[data-open],[data-delete],[data-restore],[data-recover]';
 function taskLockControls() {
   document.querySelectorAll(taskWriteSelectors).forEach(el => {
     if (!taskDisabled.has(el)) taskDisabled.set(el, el.disabled);
@@ -744,10 +744,6 @@ bind('seatBtn', async () => {
   await save(p);
   $('seatSettings').classList.remove('dirty');
   await solve('seats');
-});
-bind('undoBtn', async () => {
-  view = await api('undo');
-  renderAll();
 });
 bind('applySettings', async () => {
   const p = clone(view.plan);

@@ -92,3 +92,16 @@ def test_undo_rejects_running_result_and_expired_solve_revision(tmp_path,monkeyp
         assert a.task['status']=='stale' and a.plan==before
         with pytest.raises(ValueError):a.api_solve({'kind':'seats','revision':-1})
     finally:release.set()
+
+
+def test_every_saved_operation_names_what_undo_will_revert(tmp_path):
+    import time
+    a=app_fixture(tmp_path)
+    def solve(kind):
+        a.api_solve({'kind':kind})
+        while a.task['state']=='running':time.sleep(.05)
+        assert a.task['status'] in ('optimal','feasible','partial'),a.task
+    for kind,label in (('schedule','自动安排考试日程'),('seats','自动编排座位'),('invigilators','自动安排监考')):
+        solve(kind);assert a.view()['edit_history']['label']==label
+    a.api_numbers({'revision':a.plan['revision'],'prefix':'26','overwrite':True});assert a.view()['edit_history']['label']=='生成考号'
+    a.api_edit_undo({'revision':a.plan['revision']});assert a.view()['edit_history']['label']=='自动安排监考'

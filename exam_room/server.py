@@ -135,7 +135,7 @@ class App:
         if 'revision' in b:self.check_revision(b)
         p=deepcopy(self.require()); v=engine.validate(p,include_stale=False)
         if v['errors']:raise ValueError('仍有编排问题，请先处理后再确认。')
-        p['stale']=[];p['stale_seats']=[];return self.commit(p)
+        p['stale']=[];p['stale_seats']=[];return self.commit(p,label='确认检查结果')
 
     def number_options(self,b):
         return {k:b[k] for k in ('prefix','prefixes','overwrite','grade','rule','width','start') if k in b}
@@ -145,7 +145,7 @@ class App:
 
     def api_numbers(self,b):
         p=self.require()
-        if not b:return self.commit(generate_numbers(p))
+        if not b:return self.commit(generate_numbers(p),label='生成考号')
         if b.get('revision')!=p['revision']:raise ValueError('方案已更新，请重新预览考号后生成。')
         return self.commit(numbering.apply(p,**self.number_options(b)),label='生成考号',kind='numbers')
 
@@ -155,7 +155,7 @@ class App:
         if p.get('edit_history'):
             if p['edit_history'][-1]['kind']!='numbers':raise ValueError('后续资料或规则已修改，请使用撤销上一步逐笔恢复。')
             return self.commit(transactions.undo(p),record=False)
-        return self.commit(numbering.undo(p))
+        return self.commit(numbering.undo(p),label='撤销生成考号')
 
     def room_batch_options(self,b):
         options={k:b[k] for k in ('start','count','name_prefix','name_suffix') if k in b}
@@ -337,7 +337,7 @@ class App:
         p['history'].pop();p['stale_seats']=h.get('stale_seats',[]);p['pending_monitor_locks']=h.get('pending_monitor_locks',[]);p['seats']=h['seats'];p['invigilation']=h['invigilation'];p['stale']=h.get('stale',p.get('stale',[]))
         for e in p['exams']:
             if e['id'] in h.get('special_seating',{}):e['special_seating']=h['special_seating'][e['id']]
-        return self.commit(p)
+        return self.commit(p,label='撤销座位或监考调整')
 
     def api_solve(self,b):
         if 'revision' in b:self.check_revision(b)
@@ -369,7 +369,7 @@ class App:
                             if q['invigilation']:stale.add('invigilation')
                         if kind=='schedule':stale.discard('schedule')
                         if kind=='invigilators':stale.discard('invigilation')
-                        q['stale']=list(stale);self.commit(q)
+                        q['stale']=list(stale);self.commit(q,label={'schedule':'自动安排考试日程','seats':'自动编排座位','invigilators':'自动安排监考'}[kind])
                     self.task.update(state='done',status=result['status'],message=result.get('message','编排完成'),unfilled=result.get('unfilled',[]),proved_minimum=result.get('proved_minimum',False),elapsed=round(time.time()-self.task['started'],2))
             except Exception as e:
                 with self.lock:self.task.update(state='error',status='error',message=str(e))
@@ -386,7 +386,7 @@ class App:
         p=deepcopy(old);p['report_layouts'].update({k:printing.normalize_layout(v,k) for k,v in values.items()})
         # Validate width and page fit now; do not save settings that cannot print.
         for key in values:printing.document(p,[key],True)
-        return self.commit(p)
+        return self.commit(p,label='保存打印版式')
 
     def api_export_start(self,b):return exporting.start(self,b)
     def api_export_status(self,b):

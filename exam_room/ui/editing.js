@@ -358,13 +358,19 @@ if (typeof document !== 'undefined') {
       const dirty = window.Workspace?.dirty() || false;
       $('draftState').textContent = dirty ? '● 有未保存修改' : '已提交到本机';
       $('draftState').classList.toggle('has-draft', dirty);
-      $('globalUndo').disabled =
-        polling ||
-        (![...records.entries()].some(([root, r]) => r.draft.canUndo && (!root.matches('dialog') || root.open)) &&
-          !view?.edit_history?.can_undo);
-      $('globalUndo').title = view?.edit_history?.label
-        ? '已保存的上一步：' + view.edit_history.label
-        : '撤销最近输入或已保存操作';
+      // 按钮文字写明这一下会撤销什么：先撤销未保存的输入，再撤销最近一笔已保存操作。
+      const hasDraft = [...records.entries()].some(
+        ([root, r]) => r.draft.canUndo && (!root.matches('dialog') || root.open)
+      );
+      const saved = view?.edit_history?.can_undo ? view.edit_history.label || '已保存的操作' : '';
+      const undoButton = $('globalUndo');
+      undoButton.disabled = polling || (!hasDraft && !saved);
+      undoButton.textContent = hasDraft ? '撤销输入' : saved ? '撤销：' + saved : '撤销上一步';
+      undoButton.title = hasDraft
+        ? '撤销本页最近一次尚未保存的输入'
+        : saved
+          ? '撤销已保存的上一步：' + saved
+          : '没有可以撤销的操作';
       document.querySelectorAll('#nav [data-page]').forEach(button => {
         const root = $(button.dataset.page);
         button.querySelector('.nav-status').textContent = root?.querySelector('.dirty,.unsaved')
@@ -526,7 +532,6 @@ if (typeof document !== 'undefined') {
       });
       bind('globalUndo', undo);
       bind('restoreSaved', restoreSaved);
-      bind('undoBtn', undo);
       bind('numberUndo', undo);
       bind('nextStep', async () => {
         await Editing.continueStep(
@@ -1375,7 +1380,7 @@ if (typeof document !== 'undefined') {
       ],
       recovery: [
         '撤销与批量',
-        '撤销上一步先撤销未保存输入；没有草稿时撤销最近一笔已提交操作，最多50笔随考试保存。恢复上次保存只放弃当前页或弹窗草稿。批量操作先预览规范化值和关联影响，确认后整批保存，失败保留输入。',
+        '顶栏的撤销按钮会写明这一下撤销什么：有未保存输入时显示“撤销输入”；没有草稿时显示“撤销：”加最近一笔已保存操作的名称，最多50笔随考试保存。恢复上次保存只放弃当前页或弹窗草稿。批量操作先预览规范化值和关联影响，确认后整批保存，失败保留输入。',
       ],
       drag: [
         '两种拖动',

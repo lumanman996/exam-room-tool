@@ -169,11 +169,13 @@ def numbering_flow(page,client,root):
     assert p['students'][0]['number']=='0010102' and p['students'][1]['number']=='0010101'
     page.screenshot(path=str(root/'考号调整后.png'),full_page=True)
     page.locator('[data-page="seats"]').click()
-    if confirmed:click_api(page,'#globalUndo','edit_undo')  # 最新一步为检查确认。
+    if confirmed:
+        expect(page.locator('#globalUndo')).to_have_text('撤销：确认检查结果')
+        click_api(page,'#globalUndo','edit_undo')  # 最新一步为检查确认。
     page.locator('#numberBtn').click();click_api(page,'#numberUndo','edit_undo')
     expect(page.locator('#numberWarning')).to_be_visible()  # 号码回退，换座仍保留。
     assert client.call('state')['plan']['students']==original['students']
-    page.locator('#numberClose').click();click_api(page,'#undoBtn','edit_undo')
+    page.locator('#numberClose').click();expect(page.locator('#globalUndo')).to_have_text('撤销：调整学生座位');click_api(page,'#globalUndo','edit_undo')
     expect(page.locator('#numberWarning')).not_to_be_visible()
     restored=client.call('state')['plan'];assert restored['seats']==original['seats']
     assert restored['students']==original['students'] and restored['number_sources']==original['number_sources']

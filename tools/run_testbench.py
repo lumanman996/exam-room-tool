@@ -87,7 +87,8 @@ def write_report(directory,data):
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--mode',choices=['quick','full'],default='full')
-    parser.add_argument('--phase',choices=['scenarios','browser','scale'],help=argparse.SUPPRESS)
+    parser.add_argument('--phase',choices=['scenarios','browser','scale','property'],help=argparse.SUPPRESS)
+    parser.add_argument('--seeds',type=int,default=8,help=argparse.SUPPRESS)
     parser.add_argument('--output',type=Path,help=argparse.SUPPRESS)
     parser.add_argument('--case',action='append',help='只运行指定自动场景，可重复指定；不代表完整验收')
     args=parser.parse_args()
@@ -97,9 +98,13 @@ def main():
         phase_before=source_fingerprint()
         if args.phase=='browser':
             from tools.testbench.browser import run
+            run(recorder,only=args.case)
+        elif args.phase=='property':
+            from tools.testbench.randomized import run
+            run(recorder,seeds=args.seeds,only=args.case)
         else:
             from tools.testbench.scenarios import run
-        run(recorder,scale=args.phase=='scale',only=args.case) if args.phase!='browser' else run(recorder,only=args.case)
+            run(recorder,scale=args.phase=='scale',only=args.case)
         if not recorder.cases:
             def missing_case():raise ValueError('没有匹配的测试场景，请核对case编号；没有实际执行不能通过。')
             recorder.run('RUN-no-cases','所选测试场景实际存在',missing_case)
@@ -128,7 +133,10 @@ def main():
     data['environment']['fixture_inventory_sha256']=hashlib.sha256((ROOT/'testkit/inventory.json').read_bytes()).hexdigest()
     phases=[('资料准备',[sys.executable,'tools/prepare_testkit.py','--verify-only'],90),
             ('源码回归',[sys.executable,'-m','pytest','-q','--junitxml='+str(directory/'pytest.xml')],240),
-            ('scenarios',None,300)]
+            ('scenarios',None,300),
+            ('随机对抗',[sys.executable,'tools/run_testbench.py','--phase','property','--output',str(directory/'随机对抗'),
+                     '--seeds',str(40 if args.mode=='full' else 8),*[x for case in args.case or [] for x in ('--case',case)]],
+             600 if args.mode=='full' else 180)]
     frontend_tests=sorted((ROOT/'tests/frontend').glob('*.test.js'))
     if frontend_tests: phases.insert(2,('前端单元',[__import__('shutil').which('node') or 'node','--test',*map(str,frontend_tests)],90))
     if args.mode=='full': phases += [('browser',None,360),('scale',None,260)]

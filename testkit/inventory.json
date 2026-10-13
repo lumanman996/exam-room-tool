@@ -1,0 +1,324 @@
+{
+  "files": [
+    {
+      "path": "fixtures/C01_tiny_completed/golden_expected.json",
+      "bytes": 9857,
+      "sha256": "6beaa57e0795e7df18d7c95c6c1710a2ae716c0a0d66bc132900dbe616706749"
+    },
+    {
+      "path": "fixtures/C01_tiny_completed/学生名单.csv",
+      "bytes": 743,
+      "sha256": "75350b5b54f48ccb98cb378654d4190dfc529c6b8ded1480a8d285981580a7da"
+    },
+    {
+      "path": "fixtures/C01_tiny_completed/学生名单.xlsx",
+      "bytes": 5640,
+      "sha256": "84fe3c27aaedb7b24e81902b30a4cce942fb70c098078f8bb517691ca738d2d4"
+    },
+    {
+      "path": "fixtures/C01_tiny_completed/教师资料.csv",
+      "bytes": 160,
+      "sha256": "e4f2ed75e1515575042f9b79e610932cf6e49e40fb43fbbb841a6d865b80c44a"
+    },
+    {
+      "path": "fixtures/C01_tiny_completed/教师资料.xlsx",
+      "bytes": 5197,
+      "sha256": "f32dc2bc34cb1956c4290175fe9ec14ccbb2e7052151f393f66e244e1b4f246f"
+    },
+    {
+      "path": "fixtures/C01_tiny_completed/方案.json",
+      "bytes": 10517,
+      "sha256": "6255d94a2667061f417e9eaff6e99de3590e9fee69631381d54fa66e4d228df5"
+    },
+    {
+      "path": "fixtures/C01_tiny_completed/考场资料.csv",
+      "bytes": 292,
+      "sha256": "2047b517c56bdb47749cbbdf84330b6fbc0314e1cf4c62961cc625516845bf3a"
+    },
+    {
+      "path": "fixtures/C01_tiny_completed/考场资料.xlsx",
+      "bytes": 5426,
+      "sha256": "42652e27c198b42f07d496ec93f7f214ec4e54058f02620c31b83decc060e062"
+    },
+    {
+      "path": "fixtures/C01_tiny_completed/考试日程.csv",
+      "bytes": 421,
+      "sha256": "979ca35152e72587923e0a6c175b84680d58ecd90d33c5c1792aad15869b7455"
+    },
+    {
+      "path": "fixtures/C01_tiny_completed/考试日程.xlsx",
+      "bytes": 5480,
+      "sha256": "6aa1d3836865055b3deabae043152a3fd1257dba89545fddecf9cfe31c817fe0"
+    },
+    {
+      "path": "fixtures/C02_normal_144/学生名单.csv",
+      "bytes": 8411,
+      "sha256": "5fb11c96168bb2b4bcbd947713e8e5911b988f96f3663a2e1694614701eaf6fb"
+    },
+    {
+      "path": "fixtures/C02_normal_144/学生名单.xlsx",
+      "bytes": 10346,
+      "sha256": "087eb0a0003aa3e81188569854350e3c06e21d06e4d3cd53b24ffcc8d0327269"
+    },
+    {
+      "path": "fixtures/C02_normal_144/教师资料.csv",
+      "bytes": 524,
+      "sha256": "3496070cff28b726d426781a62da78d579b8524da287d170750f1442fdeab3a1"
+    },
+    {
+      "path": "fixtures/C02_normal_144/教师资料.xlsx",
+      "bytes": 5505,
+      "sha256": "64db1f092ca867e0d534c8a75c2a6915548372bce92f9c1a079e11a37bf0a11f"
+    },
+    {
+      "path": "fixtures/C02_normal_144/方案.json",
+      "bytes": 55362,
+      "sha256": "4ad8821ded2a8c2e7d94d20f110985822fbe4bf3964fa428728c93ac930b3353"
+    },
+    {
+      "path": "fixtures/C02_normal_144/考场资料.csv",
+      "bytes": 494,
+      "sha256": "01dfb8972bc969deb13e0e313addb519d0a0fc83287bb18379302313ca3b7ba5"
+    },
+    {
+      "path": "fixtures/C02_normal_144/考场资料.xlsx",
+      "bytes": 5628,
+      "sha256": "2e3ffbff87fd79f067a1e4444b71385b855fd1183f4a9a1c812a38e5243240b5"
+    },
+    {
+      "path": "fixtures/C02_normal_144/考试日程.csv",
+      "bytes": 580,
+      "sha256": "2249a3a975303fae2c44f39fa59b8581941961d1d8281199dfbb7760b4622867"
+    },
+    {
+      "path": "fixtures/C02_normal_144/考试日程.xlsx",
+      "bytes": 5589,
+      "sha256": "b1b61f940b725e77c1c34b0a7499d3bc9e68a62d540645ffd6d0a84ae7fe7ef1"
+    },
+    {
+      "path": "fixtures/C03_unscheduled/方案.json",
+      "bytes": 55174,
+      "sha256": "8d42f7ddb1f20d10d07cf13158994cd819d7964d1a403b54500e0a9b51299502"
+    },
+    {
+      "path": "fixtures/C04_locked/方案.json",
+      "bytes": 10495,
+      "sha256": "0838e0acc5528d3343821c3bf58da46e2f4f4bfd02512bc0c22b6942763c29f2"
+    },
+    {
+      "path": "fixtures/C05_special_subject/golden_expected.json",
+      "bytes": 9648,
+      "sha256": "ca7eb03c2b0fa13271c884c5887b98d28d5066ac6d225214bc59d912723ccc0b"
+    },
+    {
+      "path": "fixtures/C05_special_subject/方案.json",
+      "bytes": 11060,
+      "sha256": "6943821f13877edb6c464e3c980d7d964727ba889caf76a947a024c9f4cf0ae5"
+    },
+    {
+      "path": "fixtures/C06_duplicate_number/方案.json",
+      "bytes": 10505,
+      "sha256": "85d65739a6437335a17743c6c0474ac530ddfb616cc456d39b6cf493077dd0c6"
+    },
+    {
+      "path": "fixtures/C07_missing_required/方案.json",
+      "bytes": 10486,
+      "sha256": "b8bf0d58248f49bc20c50d916201471b518f57f13557ae9b0b552c93817aa632"
+    },
+    {
+      "path": "fixtures/C08_same_name_score/方案.json",
+      "bytes": 10509,
+      "sha256": "8cf73ac5c8c3c7166f1a2dff6ce7d96641efda13611aab3f4c7e031b5afd6ae4"
+    },
+    {
+      "path": "fixtures/C09_disabled_capacity/方案.json",
+      "bytes": 10538,
+      "sha256": "11fae6a1584a274c499c0602b86d878c072e2c98de835db9a609668bbd191b10"
+    },
+    {
+      "path": "fixtures/C10_duplicate_seat/方案.json",
+      "bytes": 10509,
+      "sha256": "16988aa89ed140853945223874b96ebaa37c10d07f69c278e75cfc6138f8a278"
+    },
+    {
+      "path": "fixtures/C11_exam_overlap/方案.json",
+      "bytes": 10516,
+      "sha256": "9033c61abca0a68e93f88e8005007c781979979b431b448b460c9b48ad642eaa"
+    },
+    {
+      "path": "fixtures/C12_room_unavailable/方案.json",
+      "bytes": 10626,
+      "sha256": "479a807cd06ce924e929d36547b3202dc064ebcc5775a3dcc0e41665afe8b2c5"
+    },
+    {
+      "path": "fixtures/C13_teacher_unavailable/方案.json",
+      "bytes": 10629,
+      "sha256": "892a7cac133354a1f50172923d0a2211a294ccf827da67439a8c238a763ea8f3"
+    },
+    {
+      "path": "fixtures/C14_subject_avoidance/方案.json",
+      "bytes": 10512,
+      "sha256": "27fead43501ec4ae42eadd77f13c182f8601312bce0e6f274e8d8a0e12da3e68"
+    },
+    {
+      "path": "fixtures/C15_class_avoidance/方案.json",
+      "bytes": 10532,
+      "sha256": "9900ba71a89fe559d7ab1df60d3d06300f09155025261b11c3ecbf49f98dcd83"
+    },
+    {
+      "path": "fixtures/C16_teacher_overlap/方案.json",
+      "bytes": 10510,
+      "sha256": "58814f56c00ba71b4e48dbfd357a58139246ffcabfe70c95cd66e04e02a75bb8"
+    },
+    {
+      "path": "fixtures/C17_teacher_shortage/方案.json",
+      "bytes": 9255,
+      "sha256": "a34f7c6f58d66fd9c07982174939c52a9d01fb33bc8de3f5d4c72a9b215d40b7"
+    },
+    {
+      "path": "fixtures/C18_number_mismatch/方案.json",
+      "bytes": 10513,
+      "sha256": "cf6e9cd1a3c4bb27d922c204ff1b34a3a33e88100080a1646f4b1b77721cf282"
+    },
+    {
+      "path": "fixtures/C19_legacy/方案.json",
+      "bytes": 9203,
+      "sha256": "a6eebaa9a24003ab9c8cf0331330bfc54f84e4ec11569e417b3383c6a50e56a0"
+    },
+    {
+      "path": "fixtures/C20_large_mixed/学生名单.csv",
+      "bytes": 87209,
+      "sha256": "d0a19e82d28ee64d858a3d4d69b6505429c1a6082ee514eb4c74ae50cd0589a2"
+    },
+    {
+      "path": "fixtures/C20_large_mixed/学生名单.xlsx",
+      "bytes": 55335,
+      "sha256": "0f1dd83183e23d9d520be73b2453cf8301e9fa488e4b28cd03b9943fca06db73"
+    },
+    {
+      "path": "fixtures/C20_large_mixed/教师资料.csv",
+      "bytes": 3176,
+      "sha256": "10cfd8473d8d363839defa2437ee5f1425a0973ccafdc7af6be700331e60ef54"
+    },
+    {
+      "path": "fixtures/C20_large_mixed/教师资料.xlsx",
+      "bytes": 7448,
+      "sha256": "069daa591f974b5fe1f12193dcba08b2b4f0e661b06a0ab19544b7a3afd7d648"
+    },
+    {
+      "path": "fixtures/C20_large_mixed/方案.json",
+      "bytes": 414503,
+      "sha256": "fc600c2a2f5590788124d988bd5e05c1603f5633cecb58c9c12e8914333a1a84"
+    },
+    {
+      "path": "fixtures/C20_large_mixed/考场资料.csv",
+      "bytes": 3002,
+      "sha256": "b8a343d1974e6183fda6a8bb1a8247d469944076b815a2a907bdf9680a6777c8"
+    },
+    {
+      "path": "fixtures/C20_large_mixed/考场资料.xlsx",
+      "bytes": 7800,
+      "sha256": "6a59fa2c9acca909851d3d0c373b5bcb2d2d90833bd12f40eb6293d0e2f3eebb"
+    },
+    {
+      "path": "fixtures/C20_large_mixed/考试日程.csv",
+      "bytes": 580,
+      "sha256": "2249a3a975303fae2c44f39fa59b8581941961d1d8281199dfbb7760b4622867"
+    },
+    {
+      "path": "fixtures/C20_large_mixed/考试日程.xlsx",
+      "bytes": 5589,
+      "sha256": "b1b61f940b725e77c1c34b0a7499d3bc9e68a62d540645ffd6d0a84ae7fe7ef1"
+    },
+    {
+      "path": "fixtures/C21_large_separate_shortage/方案.json",
+      "bytes": 414522,
+      "sha256": "622131eb88d83e76ba12f2f0cf0882190c2bfd1feafbaa63e9de4707d28a82a6"
+    },
+    {
+      "path": "fixtures/C22_selected_mixing/方案.json",
+      "bytes": 55425,
+      "sha256": "99fb591ec07aa35eb770c63f1ec882384f51194793aabab0f79673067a3861af"
+    },
+    {
+      "path": "fixtures/C23_layout_routes/方案.json",
+      "bytes": 10503,
+      "sha256": "6174718abfcf395856a83e979b9e40295b487888135c16d4e96954ba9b8b7b4b"
+    },
+    {
+      "path": "fixtures/C24_lock_conflict/方案.json",
+      "bytes": 10512,
+      "sha256": "e01053182e7a94941e7340270e7d4cec9ff7dd261a2b55c015dd158a45660c67"
+    },
+    {
+      "path": "fixtures/C25_stale/方案.json",
+      "bytes": 10550,
+      "sha256": "c629aa079337973f3569ea339e44fb182ca573ba300c4a381988fe93da37efbc"
+    },
+    {
+      "path": "fixtures/C26_safe_text/方案.json",
+      "bytes": 10511,
+      "sha256": "7959a7d1fcdbc0c14a780add3a730d0153084c8cdbc8a51958c469ada0a36b17"
+    },
+    {
+      "path": "fixtures/C27_nonoverlap_reuse/golden_expected.json",
+      "bytes": 9857,
+      "sha256": "af3801b482842f8ddf5629d3991e110557a9a87568d7f7b4aa002918210aedfc"
+    },
+    {
+      "path": "fixtures/C27_nonoverlap_reuse/方案.json",
+      "bytes": 10904,
+      "sha256": "57ed022f94146b172a357888accab92a83977eaf8eb270acee4bc6da8a58e7bb"
+    },
+    {
+      "path": "fixtures/imports/不支持版本.json",
+      "bytes": 55364,
+      "sha256": "6f74727d513c78a72f18edd458fa571ca0d3d88657c159a92617c23f2c7993a2"
+    },
+    {
+      "path": "fixtures/imports/别名与原始成绩列.xlsx",
+      "bytes": 10906,
+      "sha256": "291e13fa32c6dde36210f80f7c50635685c5bd0247beea07a39c3792dc9eb57b"
+    },
+    {
+      "path": "fixtures/imports/多工作表标题行.xlsx",
+      "bytes": 10977,
+      "sha256": "8b34d4335d1dfe701c7f6d39a5b3ddcb983de138729f52f3fe320c74f4ec6657"
+    },
+    {
+      "path": "fixtures/imports/学生GB18030.csv",
+      "bytes": 7096,
+      "sha256": "a6ac483692bd10853c4e9ee932052ecdd62445b33dcfd0c98852d1285ebfff11"
+    },
+    {
+      "path": "fixtures/imports/损坏文件.xlsx",
+      "bytes": 56,
+      "sha256": "c1e35be5d728b2d1e22f770ce725eb02d8f9cb49897b5615e92a3baf118918e0"
+    },
+    {
+      "path": "fixtures/imports/损坏方案.json",
+      "bytes": 13,
+      "sha256": "ee550950d01dcca5b263fa08e4f2174735be3545eceb509230807fcd321d2d99"
+    },
+    {
+      "path": "fixtures/imports/缺姓名.csv",
+      "bytes": 99,
+      "sha256": "2fdf0cddb128d556d909f6ed75937b0cab4350bfd4fceda29d486dd5a21932f4"
+    },
+    {
+      "path": "fixtures/imports/重复考号.csv",
+      "bytes": 175,
+      "sha256": "2f2104d778cc8684ecdcb4717d03345569bacf59a9d2d378ae09b8e147d31847"
+    },
+    {
+      "path": "fixtures/imports/错误教师时段.csv",
+      "bytes": 105,
+      "sha256": "a7c6e6e30c38b3eba172cbf77a540d7e7a1dede70b0dda3221ef1a41072dac07"
+    },
+    {
+      "path": "fixtures/layout_expected.json",
+      "bytes": 933,
+      "sha256": "96e4e50ecaf17f0882f2a738ff64181f13df189214cb7332fec10bc38b15c439"
+    }
+  ]
+}

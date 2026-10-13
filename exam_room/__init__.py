@@ -1,0 +1,5 @@
+"""考场编排：本机考务管理。"""
+APP_NAME = "考场编排"
+VERSION = "1.1.0"
+REPO = "lumanman996/exam-room-tool"
+HOMEPAGE = f"https://github.com/{REPO}"

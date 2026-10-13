@@ -1,0 +1,5 @@
+openpyxl>=3.1,<4
+ortools>=9.12,<10
+pywebview>=5,<7
+cryptography>=42
+certifi>=2024

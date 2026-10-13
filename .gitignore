@@ -1,0 +1,16 @@
+.venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+data/
+output/
+build/
+dist/
+admin/
+exam_room/_license_public.json
+*.spec
+.DS_Store
+test-results/
+playwright-report/
+.playwright-cli/
+更新日志.txt

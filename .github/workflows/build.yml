@@ -1,0 +1,201 @@
+name: Windows 和 Mac 候选构建自检
+on:
+  workflow_dispatch:
+    inputs:
+      platform:
+        description: 构建平台（仅生成内部候选，不发布）
+        required: true
+        default: windows
+        type: choice
+        options: [windows, mac, both]
+      reference_run_id:
+        description: 已通过的 Windows 源码证据运行编号（空值执行完整流程）
+        required: false
+        default: ''
+        type: string
+permissions:
+  contents: read
+  actions: read
+jobs:
+  build:
+    timeout-minutes: 50
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ${{ fromJSON(inputs.platform == 'windows' && '["windows-2022"]' || inputs.platform == 'mac' && '["macos-14"]' || '["windows-2022","macos-14"]') }}
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        shell: bash
+    env:
+      PYTHONUTF8: '1'
+      PYTHONIOENCODING: utf-8
+      EXAM_ROOM_NO_UPDATE_CHECK: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          architecture: ${{ matrix.os == 'windows-2022' && 'x64' || 'arm64' }}
+      - uses: actions/setup-node@v4
+        if: inputs.reference_run_id == ''
+        with:
+          node-version: '22'
+      - name: 记录真实构建环境并核对架构
+        env:
+          REFERENCE_RUN_ID: ${{ inputs.reference_run_id }}
+          REQUESTED_PLATFORM: ${{ inputs.platform }}
+        run: |
+          mkdir -p output/ci
+          python - <<'PY'
+          import json,platform,sys
+          from pathlib import Path
+          host=platform.machine().lower()
+          expected='arm64' if sys.platform=='darwin' else 'x64'
+          import os,re
+          reference=os.environ.get('REFERENCE_RUN_ID','')
+          if reference:
+              assert sys.platform=='win32' and os.environ['REQUESTED_PLATFORM']=='windows','参考基线只允许 Windows 单平台。'
+              assert re.fullmatch(r'[0-9]+',reference) and int(reference)>0,'参考运行编号须为正整数。'
+          data=dict(system=platform.platform(),arch=host,python=sys.version,expected_arch=expected)
+          Path('output/ci/environment.json').write_text(json.dumps(data,indent=2),encoding='utf-8')
+          if sys.platform=='darwin':assert host=='arm64',data
+          else:assert sys.platform=='win32' and host in ('amd64','x86_64'),data
+          PY
+      - name: 安装运行和验测依赖
+        run: python -m pip install -r requirements-dev.txt 2>&1 | tee output/ci/dependencies.log
+      - name: 安装浏览器验测运行时
+        if: inputs.reference_run_id == ''
+        run: python -m playwright install chromium 2>&1 | tee output/ci/browser-install.log
+      - name: 校验并写入仅公钥配置
+        env:
+          PUBLIC_CONFIG: ${{ vars.EXAM_ROOM_PUBLIC_CONFIG }}
+        run: |
+          python - <<'PY' 2>&1 | tee output/ci/public-config.log
+          import json,os,runpy
+          from pathlib import Path
+          raw=os.environ.get('PUBLIC_CONFIG','')
+          if not raw:raise SystemExit('缺少本产品公钥仓库变量。')
+          data=json.loads(raw)
+          path=Path('exam_room/_license_public.json')
+          path.write_text(json.dumps(data),encoding='utf-8')
+          runpy.run_path('packaging/build.py')['validate_public_config'](path)
+          PY
+      - name: 下载同仓库指定 Windows 证据
+        if: inputs.reference_run_id != ''
+        uses: actions/download-artifact@v4
+        with:
+          name: exam-room-tool-evidence-windows-2022-${{ inputs.reference_run_id }}
+          path: output/reference/${{ inputs.reference_run_id }}
+          github-token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          run-id: ${{ inputs.reference_run_id }}
+      - name: 核对原 Windows 基线并重跑打包保护
+        if: inputs.reference_run_id != ''
+        env:
+          REFERENCE_RUN_ID: ${{ inputs.reference_run_id }}
+          REFERENCE_DIRECTORY: output/reference/${{ inputs.reference_run_id }}
+        run: |
+          python packaging/build.py --verify-reference "$REFERENCE_DIRECTORY" --reference-run-id "$REFERENCE_RUN_ID" 2>&1 | tee output/ci/reference-verification.log
+          python -m pytest -q tests/test_packaging.py --junitxml=output/ci/packaging-tests.xml 2>&1 | tee output/ci/packaging-tests.log
+          python - <<'PY'
+          import json,os
+          from pathlib import Path
+          path=Path('output/ci/reference-verification.json')
+          proof=json.loads(path.read_text(encoding='utf-8'))
+          proof['packaging_tests_retested']=True
+          path.write_text(json.dumps(proof,ensure_ascii=False,indent=2),encoding='utf-8')
+          with open(os.environ['GITHUB_STEP_SUMMARY'],'a',encoding='utf-8') as f:
+              f.write('复用 Windows 运行 '+proof['reference_run_id']+' 的源码 full 与原生自动专项（原生实际退出码 '+str(proof['original_native_exit_code'])+'）；原始提交与时间保留，本次没有重新运行 full/native。打包保护已重测；新源码自检、构建和冻结自检仍须通过。最终实机验收另行完成。\n')
+          PY
+      - name: 源码隔离自检
+        run: python packaging/smoke_test.py --report output/ci/source-selftest.json 2>&1 | tee output/ci/source-selftest.log
+      - name: 本平台完整验测（含 Python、前端、浏览器和规模测试）
+        if: inputs.reference_run_id == ''
+        run: python tools/run_testbench.py --mode full 2>&1 | tee output/ci/full.log
+      - name: 核对本次完成的完整报告
+        id: full-report
+        if: inputs.reference_run_id == ''
+        run: |
+          python - <<'PY' 2>&1 | tee output/ci/full-baseline.log
+          import json,os
+          from pathlib import Path
+          from tools.native_acceptance import validate_reference
+          directory=Path(Path('output/testbench/latest.txt').read_text(encoding='utf-8').strip()).resolve()
+          directory.relative_to(Path('output/testbench').resolve())
+          report=directory/'report.json'
+          validate_reference(json.loads(report.read_text(encoding='utf-8')))
+          Path('output/ci/full-baseline.json').write_text(json.dumps({'report':str(report)},indent=2),encoding='utf-8')
+          with open(os.environ['GITHUB_OUTPUT'],'a',encoding='utf-8') as f:
+              f.write('report='+report.as_posix()+'\n')
+          PY
+      - name: 原生宿主自动专项（环境阻塞仅生成待实机验收候选）
+        id: native
+        if: inputs.reference_run_id == ''
+        env:
+          FULL_REPORT: ${{ steps.full-report.outputs.report }}
+          NATIVE_PLATFORM: ${{ matrix.os == 'windows-2022' && 'windows' || 'mac' }}
+        run: |
+          python - <<'PY' 2>&1 | tee output/ci/native-contract.log
+          import json,os,subprocess,sys
+          from pathlib import Path
+          directory=Path('output/ci/native')
+          directory.mkdir(parents=True,exist_ok=True)
+          command=[sys.executable,'tools/native_acceptance.py','--mode','run',
+              '--platform',os.environ['NATIVE_PLATFORM'],'--baseline',os.environ['FULL_REPORT'],
+              '--output',str(directory)]
+          with Path('output/ci/native.log').open('w',encoding='utf-8') as f:
+              result=subprocess.run(command,stdout=f,stderr=subprocess.STDOUT)
+          code=result.returncode
+          status={0:'自动专项通过',1:'失败',2:'环境阻塞'}.get(code,'异常退出')
+          evidence={'exit_code':code,'status':status,'platform':os.environ['NATIVE_PLATFORM'],
+              'baseline':os.environ['FULL_REPORT'],'final_platform_accepted':False,'report_verified':False,
+              'scope':'仅源码隐藏原生宿主自动专项；最终包、系统对话框、实际打印与升级另验'}
+          Path('output/ci/native-status.json').write_text(json.dumps(evidence,ensure_ascii=False,indent=2),encoding='utf-8')
+          print(Path('output/ci/native.log').read_text(encoding='utf-8'),flush=True)
+          if code in (0,2):
+              terminal=json.loads((directory/'terminal.json').read_text(encoding='utf-8'))
+              report=json.loads((directory/'report.json').read_text(encoding='utf-8'))
+              assert terminal['exit_code']==code and terminal['mode']=='run'
+              assert terminal['selected_platform']==os.environ['NATIVE_PLATFORM']
+              assert report['mode']=='原生验收：run' and report['cases']
+              if code==0:
+                  assert all(c['status']=='通过' for c in report['cases'])
+                  passed={c['id'] for c in report['cases']}
+                  assert {'NATIVE-host-first','NATIVE-host-reopen'}<=passed
+              else:
+                  assert not any(c['status']=='失败' for c in report['cases'])
+                  assert all(c['status'] in ('通过','环境阻塞') for c in report['cases'])
+                  assert any(c['id']=='NATIVE-environment' and c['status']=='环境阻塞' for c in report['cases'])
+              evidence['report_verified']=True
+              Path('output/ci/native-status.json').write_text(json.dumps(evidence,ensure_ascii=False,indent=2),encoding='utf-8')
+          with open(os.environ['GITHUB_STEP_SUMMARY'],'a',encoding='utf-8') as f:
+              f.write('原生宿主自动专项：'+status+'（实际退出码 '+str(code)+'）。候选仅供内部测试，最终平台验收未完成。\n')
+          if code==2:
+              print('::warning::原生环境阻塞，仅生成内部待实机验收候选；原生验证未通过，详情见证据附件。')
+          raise SystemExit(0 if code in (0,2) else 1)
+          PY
+      - name: 构建内部候选（不发布）
+        run: python packaging/build.py 2>&1 | tee output/ci/build.log
+      - name: 冻结程序隔离自检
+        run: python packaging/smoke_test.py --frozen --report output/ci/frozen-selftest.json 2>&1 | tee output/ci/frozen-selftest.log
+      - name: 保留日志和失败证据
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: exam-room-tool-evidence-${{ matrix.os }}-${{ github.run_id }}
+          path: |
+            output/ci/
+            output/testbench/
+            output/build-runs/**/manifest.json
+            output/build-runs/**/build.log
+          if-no-files-found: warn
+          retention-days: 14
+      - name: 保存内部候选包（最终平台验收另行完成）
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: exam-room-tool-internal-pending-device-acceptance-${{ matrix.os }}-${{ github.run_id }}
+          path: dist/*.zip
+          if-no-files-found: error
+          retention-days: 14

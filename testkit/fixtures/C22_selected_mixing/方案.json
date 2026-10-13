@@ -1,0 +1,2449 @@
+{
+  "version": 1,
+  "id": "c22-selected-mixing",
+  "name": "虚构·七八混排九独立",
+  "school": "验测中学（完全虚构）",
+  "created_at": "2026-10-06T00:00:00",
+  "updated_at": "2026-10-06T00:00:00",
+  "students": [
+    {
+      "name": "虚构学生七001",
+      "grade": "七年级",
+      "class_name": "七1",
+      "student_no": "00700001",
+      "number": "700001",
+      "score": 477.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 477.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s0-0"
+    },
+    {
+      "name": "虚构学生七002",
+      "grade": "七年级",
+      "class_name": "七1",
+      "student_no": "00700002",
+      "number": "700002",
+      "score": 207.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 207.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s0-1"
+    },
+    {
+      "name": "虚构学生七003",
+      "grade": "七年级",
+      "class_name": "七1",
+      "student_no": "00700003",
+      "number": "700003",
+      "score": 162.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 162.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s0-2"
+    },
+    {
+      "name": "虚构学生七004",
+      "grade": "七年级",
+      "class_name": "七1",
+      "student_no": "00700004",
+      "number": "700004",
+      "score": 529.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 529.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s0-3"
+    },
+    {
+      "name": "虚构学生七005",
+      "grade": "七年级",
+      "class_name": "七1",
+      "student_no": "00700005",
+      "number": "700005",
+      "score": 290.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 290.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s0-4"
+    },
+    {
+      "name": "虚构学生七006",
+      "grade": "七年级",
+      "class_name": "七1",
+      "student_no": "00700006",
+      "number": "700006",
+      "score": 275.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 275.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s0-5"
+    },
+    {
+      "name": "虚构学生七007",
+      "grade": "七年级",
+      "class_name": "七1",
+      "student_no": "00700007",
+      "number": "700007",
+      "score": 264.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 264.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s0-6"
+    },
+    {
+      "name": "虚构学生七008",
+      "grade": "七年级",
+      "class_name": "七1",
+      "student_no": "00700008",
+      "number": "700008",
+      "score": 221.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 221.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s0-7"
+    },
+    {
+      "name": "虚构学生七009",
+      "grade": "七年级",
+      "class_name": "七1",
+      "student_no": "00700009",
+      "number": "700009",
+      "score": 527.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 527.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s0-8"
+    },
+    {
+      "name": "虚构学生七010",
+      "grade": "七年级",
+      "class_name": "七1",
+      "student_no": "00700010",
+      "number": "700010",
+      "score": 202.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 202.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s0-9"
+    },
+    {
+      "name": "虚构学生七011",
+      "grade": "七年级",
+      "class_name": "七1",
+      "student_no": "00700011",
+      "number": "700011",
+      "score": 496.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 496.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s0-10"
+    },
+    {
+      "name": "虚构学生七012",
+      "grade": "七年级",
+      "class_name": "七1",
+      "student_no": "00700012",
+      "number": "700012",
+      "score": 529.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 529.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s0-11"
+    },
+    {
+      "name": "虚构学生七013",
+      "grade": "七年级",
+      "class_name": "七1",
+      "student_no": "00700013",
+      "number": "700013",
+      "score": 429.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 429.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s0-12"
+    },
+    {
+      "name": "虚构学生七014",
+      "grade": "七年级",
+      "class_name": "七1",
+      "student_no": "00700014",
+      "number": "700014",
+      "score": 194.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 194.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s0-13"
+    },
+    {
+      "name": "虚构学生七015",
+      "grade": "七年级",
+      "class_name": "七1",
+      "student_no": "00700015",
+      "number": "700015",
+      "score": 452.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 452.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s0-14"
+    },
+    {
+      "name": "虚构学生七016",
+      "grade": "七年级",
+      "class_name": "七1",
+      "student_no": "00700016",
+      "number": "700016",
+      "score": 366.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 366.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s0-15"
+    },
+    {
+      "name": "虚构学生七017",
+      "grade": "七年级",
+      "class_name": "七2",
+      "student_no": "00700017",
+      "number": "700017",
+      "score": 166.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 166.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s0-16"
+    },
+    {
+      "name": "虚构学生七018",
+      "grade": "七年级",
+      "class_name": "七2",
+      "student_no": "00700018",
+      "number": "700018",
+      "score": 165.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 165.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s0-17"
+    },
+    {
+      "name": "虚构学生七019",
+      "grade": "七年级",
+      "class_name": "七2",
+      "student_no": "00700019",
+      "number": "700019",
+      "score": 197.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 197.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s0-18"
+    },
+    {
+      "name": "虚构学生七020",
+      "grade": "七年级",
+      "class_name": "七2",
+      "student_no": "00700020",
+      "number": "700020",
+      "score": 261.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 261.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s0-19"
+    },
+    {
+      "name": "虚构学生七021",
+      "grade": "七年级",
+      "class_name": "七2",
+      "student_no": "00700021",
+      "number": "700021",
+      "score": 269.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 269.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s0-20"
+    },
+    {
+      "name": "虚构学生七022",
+      "grade": "七年级",
+      "class_name": "七2",
+      "student_no": "00700022",
+      "number": "700022",
+      "score": 408.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 408.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s0-21"
+    },
+    {
+      "name": "虚构学生七023",
+      "grade": "七年级",
+      "class_name": "七2",
+      "student_no": "00700023",
+      "number": "700023",
+      "score": 458.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 458.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s0-22"
+    },
+    {
+      "name": "虚构学生七024",
+      "grade": "七年级",
+      "class_name": "七2",
+      "student_no": "00700024",
+      "number": "700024",
+      "score": 163.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 163.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s0-23"
+    },
+    {
+      "name": "虚构学生七025",
+      "grade": "七年级",
+      "class_name": "七2",
+      "student_no": "00700025",
+      "number": "700025",
+      "score": 437.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 437.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s0-24"
+    },
+    {
+      "name": "虚构学生七026",
+      "grade": "七年级",
+      "class_name": "七2",
+      "student_no": "00700026",
+      "number": "700026",
+      "score": 251.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 251.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s0-25"
+    },
+    {
+      "name": "虚构学生七027",
+      "grade": "七年级",
+      "class_name": "七2",
+      "student_no": "00700027",
+      "number": "700027",
+      "score": 516.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 516.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s0-26"
+    },
+    {
+      "name": "虚构学生七028",
+      "grade": "七年级",
+      "class_name": "七2",
+      "student_no": "00700028",
+      "number": "700028",
+      "score": 482.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 482.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s0-27"
+    },
+    {
+      "name": "虚构学生七029",
+      "grade": "七年级",
+      "class_name": "七2",
+      "student_no": "00700029",
+      "number": "700029",
+      "score": 509.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 509.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s0-28"
+    },
+    {
+      "name": "虚构学生七030",
+      "grade": "七年级",
+      "class_name": "七2",
+      "student_no": "00700030",
+      "number": "700030",
+      "score": 429.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 429.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s0-29"
+    },
+    {
+      "name": "虚构学生七031",
+      "grade": "七年级",
+      "class_name": "七2",
+      "student_no": "00700031",
+      "number": "700031",
+      "score": 364.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 364.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s0-30"
+    },
+    {
+      "name": "虚构学生七032",
+      "grade": "七年级",
+      "class_name": "七2",
+      "student_no": "00700032",
+      "number": "700032",
+      "score": 262.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 262.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s0-31"
+    },
+    {
+      "name": "虚构学生七033",
+      "grade": "七年级",
+      "class_name": "七3",
+      "student_no": "00700033",
+      "number": "700033",
+      "score": 379.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 379.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s0-32"
+    },
+    {
+      "name": "虚构学生七034",
+      "grade": "七年级",
+      "class_name": "七3",
+      "student_no": "00700034",
+      "number": "700034",
+      "score": 451.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 451.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s0-33"
+    },
+    {
+      "name": "虚构学生七035",
+      "grade": "七年级",
+      "class_name": "七3",
+      "student_no": "00700035",
+      "number": "700035",
+      "score": 292.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 292.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s0-34"
+    },
+    {
+      "name": "虚构学生七036",
+      "grade": "七年级",
+      "class_name": "七3",
+      "student_no": "00700036",
+      "number": "700036",
+      "score": 564.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 564.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s0-35"
+    },
+    {
+      "name": "虚构学生七037",
+      "grade": "七年级",
+      "class_name": "七3",
+      "student_no": "00700037",
+      "number": "700037",
+      "score": 595.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 595.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s0-36"
+    },
+    {
+      "name": "虚构学生七038",
+      "grade": "七年级",
+      "class_name": "七3",
+      "student_no": "00700038",
+      "number": "700038",
+      "score": 153.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 153.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s0-37"
+    },
+    {
+      "name": "虚构学生七039",
+      "grade": "七年级",
+      "class_name": "七3",
+      "student_no": "00700039",
+      "number": "700039",
+      "score": 538.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 538.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s0-38"
+    },
+    {
+      "name": "虚构学生七040",
+      "grade": "七年级",
+      "class_name": "七3",
+      "student_no": "00700040",
+      "number": "700040",
+      "score": 562.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 562.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s0-39"
+    },
+    {
+      "name": "虚构学生七041",
+      "grade": "七年级",
+      "class_name": "七3",
+      "student_no": "00700041",
+      "number": "700041",
+      "score": 231.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 231.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s0-40"
+    },
+    {
+      "name": "虚构学生七042",
+      "grade": "七年级",
+      "class_name": "七3",
+      "student_no": "00700042",
+      "number": "700042",
+      "score": 507.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 507.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s0-41"
+    },
+    {
+      "name": "虚构学生七043",
+      "grade": "七年级",
+      "class_name": "七3",
+      "student_no": "00700043",
+      "number": "700043",
+      "score": 366.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 366.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s0-42"
+    },
+    {
+      "name": "虚构学生七044",
+      "grade": "七年级",
+      "class_name": "七3",
+      "student_no": "00700044",
+      "number": "700044",
+      "score": 324.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 324.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s0-43"
+    },
+    {
+      "name": "虚构学生七045",
+      "grade": "七年级",
+      "class_name": "七3",
+      "student_no": "00700045",
+      "number": "700045",
+      "score": 292.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 292.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s0-44"
+    },
+    {
+      "name": "虚构学生七046",
+      "grade": "七年级",
+      "class_name": "七3",
+      "student_no": "00700046",
+      "number": "700046",
+      "score": 229.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 229.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s0-45"
+    },
+    {
+      "name": "虚构学生七047",
+      "grade": "七年级",
+      "class_name": "七3",
+      "student_no": "00700047",
+      "number": "700047",
+      "score": 260.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 260.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s0-46"
+    },
+    {
+      "name": "虚构学生七048",
+      "grade": "七年级",
+      "class_name": "七3",
+      "student_no": "00700048",
+      "number": "700048",
+      "score": 540.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 540.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s0-47"
+    },
+    {
+      "name": "虚构学生八001",
+      "grade": "八年级",
+      "class_name": "八1",
+      "student_no": "00800001",
+      "number": "800001",
+      "score": 322.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 322.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s1-0"
+    },
+    {
+      "name": "虚构学生八002",
+      "grade": "八年级",
+      "class_name": "八1",
+      "student_no": "00800002",
+      "number": "800002",
+      "score": 202.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 202.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s1-1"
+    },
+    {
+      "name": "虚构学生八003",
+      "grade": "八年级",
+      "class_name": "八1",
+      "student_no": "00800003",
+      "number": "800003",
+      "score": 197.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 197.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s1-2"
+    },
+    {
+      "name": "虚构学生八004",
+      "grade": "八年级",
+      "class_name": "八1",
+      "student_no": "00800004",
+      "number": "800004",
+      "score": 344.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 344.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s1-3"
+    },
+    {
+      "name": "虚构学生八005",
+      "grade": "八年级",
+      "class_name": "八1",
+      "student_no": "00800005",
+      "number": "800005",
+      "score": 199.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 199.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s1-4"
+    },
+    {
+      "name": "虚构学生八006",
+      "grade": "八年级",
+      "class_name": "八1",
+      "student_no": "00800006",
+      "number": "800006",
+      "score": 333.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 333.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s1-5"
+    },
+    {
+      "name": "虚构学生八007",
+      "grade": "八年级",
+      "class_name": "八1",
+      "student_no": "00800007",
+      "number": "800007",
+      "score": 583.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 583.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s1-6"
+    },
+    {
+      "name": "虚构学生八008",
+      "grade": "八年级",
+      "class_name": "八1",
+      "student_no": "00800008",
+      "number": "800008",
+      "score": 326.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 326.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s1-7"
+    },
+    {
+      "name": "虚构学生八009",
+      "grade": "八年级",
+      "class_name": "八1",
+      "student_no": "00800009",
+      "number": "800009",
+      "score": 459.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 459.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s1-8"
+    },
+    {
+      "name": "虚构学生八010",
+      "grade": "八年级",
+      "class_name": "八1",
+      "student_no": "00800010",
+      "number": "800010",
+      "score": 285.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 285.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s1-9"
+    },
+    {
+      "name": "虚构学生八011",
+      "grade": "八年级",
+      "class_name": "八1",
+      "student_no": "00800011",
+      "number": "800011",
+      "score": 563.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 563.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s1-10"
+    },
+    {
+      "name": "虚构学生八012",
+      "grade": "八年级",
+      "class_name": "八1",
+      "student_no": "00800012",
+      "number": "800012",
+      "score": 172.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 172.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s1-11"
+    },
+    {
+      "name": "虚构学生八013",
+      "grade": "八年级",
+      "class_name": "八1",
+      "student_no": "00800013",
+      "number": "800013",
+      "score": 523.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 523.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s1-12"
+    },
+    {
+      "name": "虚构学生八014",
+      "grade": "八年级",
+      "class_name": "八1",
+      "student_no": "00800014",
+      "number": "800014",
+      "score": 385.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 385.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s1-13"
+    },
+    {
+      "name": "虚构学生八015",
+      "grade": "八年级",
+      "class_name": "八1",
+      "student_no": "00800015",
+      "number": "800015",
+      "score": 424.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 424.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s1-14"
+    },
+    {
+      "name": "虚构学生八016",
+      "grade": "八年级",
+      "class_name": "八1",
+      "student_no": "00800016",
+      "number": "800016",
+      "score": 213.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 213.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s1-15"
+    },
+    {
+      "name": "虚构学生八017",
+      "grade": "八年级",
+      "class_name": "八2",
+      "student_no": "00800017",
+      "number": "800017",
+      "score": 343.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 343.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s1-16"
+    },
+    {
+      "name": "虚构学生八018",
+      "grade": "八年级",
+      "class_name": "八2",
+      "student_no": "00800018",
+      "number": "800018",
+      "score": 190.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 190.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s1-17"
+    },
+    {
+      "name": "虚构学生八019",
+      "grade": "八年级",
+      "class_name": "八2",
+      "student_no": "00800019",
+      "number": "800019",
+      "score": 432.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 432.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s1-18"
+    },
+    {
+      "name": "虚构学生八020",
+      "grade": "八年级",
+      "class_name": "八2",
+      "student_no": "00800020",
+      "number": "800020",
+      "score": 300.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 300.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s1-19"
+    },
+    {
+      "name": "虚构学生八021",
+      "grade": "八年级",
+      "class_name": "八2",
+      "student_no": "00800021",
+      "number": "800021",
+      "score": 574.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 574.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s1-20"
+    },
+    {
+      "name": "虚构学生八022",
+      "grade": "八年级",
+      "class_name": "八2",
+      "student_no": "00800022",
+      "number": "800022",
+      "score": 471.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 471.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s1-21"
+    },
+    {
+      "name": "虚构学生八023",
+      "grade": "八年级",
+      "class_name": "八2",
+      "student_no": "00800023",
+      "number": "800023",
+      "score": 466.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 466.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s1-22"
+    },
+    {
+      "name": "虚构学生八024",
+      "grade": "八年级",
+      "class_name": "八2",
+      "student_no": "00800024",
+      "number": "800024",
+      "score": 591.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 591.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s1-23"
+    },
+    {
+      "name": "虚构学生八025",
+      "grade": "八年级",
+      "class_name": "八2",
+      "student_no": "00800025",
+      "number": "800025",
+      "score": 335.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 335.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s1-24"
+    },
+    {
+      "name": "虚构学生八026",
+      "grade": "八年级",
+      "class_name": "八2",
+      "student_no": "00800026",
+      "number": "800026",
+      "score": 445.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 445.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s1-25"
+    },
+    {
+      "name": "虚构学生八027",
+      "grade": "八年级",
+      "class_name": "八2",
+      "student_no": "00800027",
+      "number": "800027",
+      "score": 248.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 248.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s1-26"
+    },
+    {
+      "name": "虚构学生八028",
+      "grade": "八年级",
+      "class_name": "八2",
+      "student_no": "00800028",
+      "number": "800028",
+      "score": 510.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 510.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s1-27"
+    },
+    {
+      "name": "虚构学生八029",
+      "grade": "八年级",
+      "class_name": "八2",
+      "student_no": "00800029",
+      "number": "800029",
+      "score": 185.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 185.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s1-28"
+    },
+    {
+      "name": "虚构学生八030",
+      "grade": "八年级",
+      "class_name": "八2",
+      "student_no": "00800030",
+      "number": "800030",
+      "score": 173.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 173.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s1-29"
+    },
+    {
+      "name": "虚构学生八031",
+      "grade": "八年级",
+      "class_name": "八2",
+      "student_no": "00800031",
+      "number": "800031",
+      "score": 488.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 488.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s1-30"
+    },
+    {
+      "name": "虚构学生八032",
+      "grade": "八年级",
+      "class_name": "八2",
+      "student_no": "00800032",
+      "number": "800032",
+      "score": 266.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 266.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s1-31"
+    },
+    {
+      "name": "虚构学生八033",
+      "grade": "八年级",
+      "class_name": "八3",
+      "student_no": "00800033",
+      "number": "800033",
+      "score": 545.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 545.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s1-32"
+    },
+    {
+      "name": "虚构学生八034",
+      "grade": "八年级",
+      "class_name": "八3",
+      "student_no": "00800034",
+      "number": "800034",
+      "score": 298.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 298.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s1-33"
+    },
+    {
+      "name": "虚构学生八035",
+      "grade": "八年级",
+      "class_name": "八3",
+      "student_no": "00800035",
+      "number": "800035",
+      "score": 190.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 190.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s1-34"
+    },
+    {
+      "name": "虚构学生八036",
+      "grade": "八年级",
+      "class_name": "八3",
+      "student_no": "00800036",
+      "number": "800036",
+      "score": 587.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 587.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s1-35"
+    },
+    {
+      "name": "虚构学生八037",
+      "grade": "八年级",
+      "class_name": "八3",
+      "student_no": "00800037",
+      "number": "800037",
+      "score": 269.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 269.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s1-36"
+    },
+    {
+      "name": "虚构学生八038",
+      "grade": "八年级",
+      "class_name": "八3",
+      "student_no": "00800038",
+      "number": "800038",
+      "score": 593.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 593.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s1-37"
+    },
+    {
+      "name": "虚构学生八039",
+      "grade": "八年级",
+      "class_name": "八3",
+      "student_no": "00800039",
+      "number": "800039",
+      "score": 201.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 201.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s1-38"
+    },
+    {
+      "name": "虚构学生八040",
+      "grade": "八年级",
+      "class_name": "八3",
+      "student_no": "00800040",
+      "number": "800040",
+      "score": 344.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 344.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s1-39"
+    },
+    {
+      "name": "虚构学生八041",
+      "grade": "八年级",
+      "class_name": "八3",
+      "student_no": "00800041",
+      "number": "800041",
+      "score": 292.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 292.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s1-40"
+    },
+    {
+      "name": "虚构学生八042",
+      "grade": "八年级",
+      "class_name": "八3",
+      "student_no": "00800042",
+      "number": "800042",
+      "score": 382.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 382.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s1-41"
+    },
+    {
+      "name": "虚构学生八043",
+      "grade": "八年级",
+      "class_name": "八3",
+      "student_no": "00800043",
+      "number": "800043",
+      "score": 475.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 475.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s1-42"
+    },
+    {
+      "name": "虚构学生八044",
+      "grade": "八年级",
+      "class_name": "八3",
+      "student_no": "00800044",
+      "number": "800044",
+      "score": 577.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 577.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s1-43"
+    },
+    {
+      "name": "虚构学生八045",
+      "grade": "八年级",
+      "class_name": "八3",
+      "student_no": "00800045",
+      "number": "800045",
+      "score": 336.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 336.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s1-44"
+    },
+    {
+      "name": "虚构学生八046",
+      "grade": "八年级",
+      "class_name": "八3",
+      "student_no": "00800046",
+      "number": "800046",
+      "score": 233.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 233.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s1-45"
+    },
+    {
+      "name": "虚构学生八047",
+      "grade": "八年级",
+      "class_name": "八3",
+      "student_no": "00800047",
+      "number": "800047",
+      "score": 339.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 339.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s1-46"
+    },
+    {
+      "name": "虚构学生八048",
+      "grade": "八年级",
+      "class_name": "八3",
+      "student_no": "00800048",
+      "number": "800048",
+      "score": 331.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 331.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s1-47"
+    },
+    {
+      "name": "虚构学生九001",
+      "grade": "九年级",
+      "class_name": "九1",
+      "student_no": "00900001",
+      "number": "900001",
+      "score": 257.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 257.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s2-0"
+    },
+    {
+      "name": "虚构学生九002",
+      "grade": "九年级",
+      "class_name": "九1",
+      "student_no": "00900002",
+      "number": "900002",
+      "score": 493.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 493.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s2-1"
+    },
+    {
+      "name": "虚构学生九003",
+      "grade": "九年级",
+      "class_name": "九1",
+      "student_no": "00900003",
+      "number": "900003",
+      "score": 286.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 286.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s2-2"
+    },
+    {
+      "name": "虚构学生九004",
+      "grade": "九年级",
+      "class_name": "九1",
+      "student_no": "00900004",
+      "number": "900004",
+      "score": 509.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 509.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s2-3"
+    },
+    {
+      "name": "虚构学生九005",
+      "grade": "九年级",
+      "class_name": "九1",
+      "student_no": "00900005",
+      "number": "900005",
+      "score": 499.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 499.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s2-4"
+    },
+    {
+      "name": "虚构学生九006",
+      "grade": "九年级",
+      "class_name": "九1",
+      "student_no": "00900006",
+      "number": "900006",
+      "score": 481.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 481.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s2-5"
+    },
+    {
+      "name": "虚构学生九007",
+      "grade": "九年级",
+      "class_name": "九1",
+      "student_no": "00900007",
+      "number": "900007",
+      "score": 186.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 186.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s2-6"
+    },
+    {
+      "name": "虚构学生九008",
+      "grade": "九年级",
+      "class_name": "九1",
+      "student_no": "00900008",
+      "number": "900008",
+      "score": 461.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 461.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s2-7"
+    },
+    {
+      "name": "虚构学生九009",
+      "grade": "九年级",
+      "class_name": "九1",
+      "student_no": "00900009",
+      "number": "900009",
+      "score": 475.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 475.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s2-8"
+    },
+    {
+      "name": "虚构学生九010",
+      "grade": "九年级",
+      "class_name": "九1",
+      "student_no": "00900010",
+      "number": "900010",
+      "score": 237.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 237.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s2-9"
+    },
+    {
+      "name": "虚构学生九011",
+      "grade": "九年级",
+      "class_name": "九1",
+      "student_no": "00900011",
+      "number": "900011",
+      "score": 423.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 423.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s2-10"
+    },
+    {
+      "name": "虚构学生九012",
+      "grade": "九年级",
+      "class_name": "九1",
+      "student_no": "00900012",
+      "number": "900012",
+      "score": 523.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 523.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s2-11"
+    },
+    {
+      "name": "虚构学生九013",
+      "grade": "九年级",
+      "class_name": "九1",
+      "student_no": "00900013",
+      "number": "900013",
+      "score": 275.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 275.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s2-12"
+    },
+    {
+      "name": "虚构学生九014",
+      "grade": "九年级",
+      "class_name": "九1",
+      "student_no": "00900014",
+      "number": "900014",
+      "score": 233.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 233.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s2-13"
+    },
+    {
+      "name": "虚构学生九015",
+      "grade": "九年级",
+      "class_name": "九1",
+      "student_no": "00900015",
+      "number": "900015",
+      "score": 386.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 386.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s2-14"
+    },
+    {
+      "name": "虚构学生九016",
+      "grade": "九年级",
+      "class_name": "九1",
+      "student_no": "00900016",
+      "number": "900016",
+      "score": 344.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 344.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s2-15"
+    },
+    {
+      "name": "虚构学生九017",
+      "grade": "九年级",
+      "class_name": "九2",
+      "student_no": "00900017",
+      "number": "900017",
+      "score": 288.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 288.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s2-16"
+    },
+    {
+      "name": "虚构学生九018",
+      "grade": "九年级",
+      "class_name": "九2",
+      "student_no": "00900018",
+      "number": "900018",
+      "score": 477.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 477.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s2-17"
+    },
+    {
+      "name": "虚构学生九019",
+      "grade": "九年级",
+      "class_name": "九2",
+      "student_no": "00900019",
+      "number": "900019",
+      "score": 502.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 502.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s2-18"
+    },
+    {
+      "name": "虚构学生九020",
+      "grade": "九年级",
+      "class_name": "九2",
+      "student_no": "00900020",
+      "number": "900020",
+      "score": 435.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 435.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s2-19"
+    },
+    {
+      "name": "虚构学生九021",
+      "grade": "九年级",
+      "class_name": "九2",
+      "student_no": "00900021",
+      "number": "900021",
+      "score": 262.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 262.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s2-20"
+    },
+    {
+      "name": "虚构学生九022",
+      "grade": "九年级",
+      "class_name": "九2",
+      "student_no": "00900022",
+      "number": "900022",
+      "score": 500.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 500.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s2-21"
+    },
+    {
+      "name": "虚构学生九023",
+      "grade": "九年级",
+      "class_name": "九2",
+      "student_no": "00900023",
+      "number": "900023",
+      "score": 316.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 316.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s2-22"
+    },
+    {
+      "name": "虚构学生九024",
+      "grade": "九年级",
+      "class_name": "九2",
+      "student_no": "00900024",
+      "number": "900024",
+      "score": 581.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 581.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s2-23"
+    },
+    {
+      "name": "虚构学生九025",
+      "grade": "九年级",
+      "class_name": "九2",
+      "student_no": "00900025",
+      "number": "900025",
+      "score": 543.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 543.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s2-24"
+    },
+    {
+      "name": "虚构学生九026",
+      "grade": "九年级",
+      "class_name": "九2",
+      "student_no": "00900026",
+      "number": "900026",
+      "score": 547.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 547.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s2-25"
+    },
+    {
+      "name": "虚构学生九027",
+      "grade": "九年级",
+      "class_name": "九2",
+      "student_no": "00900027",
+      "number": "900027",
+      "score": 178.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 178.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s2-26"
+    },
+    {
+      "name": "虚构学生九028",
+      "grade": "九年级",
+      "class_name": "九2",
+      "student_no": "00900028",
+      "number": "900028",
+      "score": 267.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 267.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s2-27"
+    },
+    {
+      "name": "虚构学生九029",
+      "grade": "九年级",
+      "class_name": "九2",
+      "student_no": "00900029",
+      "number": "900029",
+      "score": 570.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 570.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s2-28"
+    },
+    {
+      "name": "虚构学生九030",
+      "grade": "九年级",
+      "class_name": "九2",
+      "student_no": "00900030",
+      "number": "900030",
+      "score": 166.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 166.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s2-29"
+    },
+    {
+      "name": "虚构学生九031",
+      "grade": "九年级",
+      "class_name": "九2",
+      "student_no": "00900031",
+      "number": "900031",
+      "score": 562.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 562.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s2-30"
+    },
+    {
+      "name": "虚构学生九032",
+      "grade": "九年级",
+      "class_name": "九2",
+      "student_no": "00900032",
+      "number": "900032",
+      "score": 311.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 311.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s2-31"
+    },
+    {
+      "name": "虚构学生九033",
+      "grade": "九年级",
+      "class_name": "九3",
+      "student_no": "00900033",
+      "number": "900033",
+      "score": 355.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 355.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s2-32"
+    },
+    {
+      "name": "虚构学生九034",
+      "grade": "九年级",
+      "class_name": "九3",
+      "student_no": "00900034",
+      "number": "900034",
+      "score": 287.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 287.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s2-33"
+    },
+    {
+      "name": "虚构学生九035",
+      "grade": "九年级",
+      "class_name": "九3",
+      "student_no": "00900035",
+      "number": "900035",
+      "score": 183.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 183.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s2-34"
+    },
+    {
+      "name": "虚构学生九036",
+      "grade": "九年级",
+      "class_name": "九3",
+      "student_no": "00900036",
+      "number": "900036",
+      "score": 258.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 258.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s2-35"
+    },
+    {
+      "name": "虚构学生九037",
+      "grade": "九年级",
+      "class_name": "九3",
+      "student_no": "00900037",
+      "number": "900037",
+      "score": 440.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 440.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s2-36"
+    },
+    {
+      "name": "虚构学生九038",
+      "grade": "九年级",
+      "class_name": "九3",
+      "student_no": "00900038",
+      "number": "900038",
+      "score": 598.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 598.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s2-37"
+    },
+    {
+      "name": "虚构学生九039",
+      "grade": "九年级",
+      "class_name": "九3",
+      "student_no": "00900039",
+      "number": "900039",
+      "score": 517.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 517.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s2-38"
+    },
+    {
+      "name": "虚构学生九040",
+      "grade": "九年级",
+      "class_name": "九3",
+      "student_no": "00900040",
+      "number": "900040",
+      "score": 311.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 311.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s2-39"
+    },
+    {
+      "name": "虚构学生九041",
+      "grade": "九年级",
+      "class_name": "九3",
+      "student_no": "00900041",
+      "number": "900041",
+      "score": 258.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 258.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s2-40"
+    },
+    {
+      "name": "虚构学生九042",
+      "grade": "九年级",
+      "class_name": "九3",
+      "student_no": "00900042",
+      "number": "900042",
+      "score": 485.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 485.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s2-41"
+    },
+    {
+      "name": "虚构学生九043",
+      "grade": "九年级",
+      "class_name": "九3",
+      "student_no": "00900043",
+      "number": "900043",
+      "score": 405.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 405.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s2-42"
+    },
+    {
+      "name": "虚构学生九044",
+      "grade": "九年级",
+      "class_name": "九3",
+      "student_no": "00900044",
+      "number": "900044",
+      "score": 352.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 352.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s2-43"
+    },
+    {
+      "name": "虚构学生九045",
+      "grade": "九年级",
+      "class_name": "九3",
+      "student_no": "00900045",
+      "number": "900045",
+      "score": 479.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 479.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s2-44"
+    },
+    {
+      "name": "虚构学生九046",
+      "grade": "九年级",
+      "class_name": "九3",
+      "student_no": "00900046",
+      "number": "900046",
+      "score": 384.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 384.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s2-45"
+    },
+    {
+      "name": "虚构学生九047",
+      "grade": "九年级",
+      "class_name": "九3",
+      "student_no": "00900047",
+      "number": "900047",
+      "score": 223.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 223.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s2-46"
+    },
+    {
+      "name": "虚构学生九048",
+      "grade": "九年级",
+      "class_name": "九3",
+      "student_no": "00900048",
+      "number": "900048",
+      "score": 285.0,
+      "subjects": [],
+      "original": {
+        "原始总分": 285.0,
+        "虚构备注": "仅供测试"
+      },
+      "id": "s2-47"
+    }
+  ],
+  "rooms": [
+    {
+      "code": "01",
+      "name": "第01考场",
+      "location": "教学楼1层",
+      "rows": 5,
+      "cols": 6,
+      "per_desk": 1,
+      "aisles": [],
+      "disabled": [],
+      "capacity": 30,
+      "order": "straight",
+      "direction": "horizontal",
+      "availability": [],
+      "invigilators": null,
+      "id": "r0"
+    },
+    {
+      "code": "02",
+      "name": "第02考场",
+      "location": "教学楼1层",
+      "rows": 5,
+      "cols": 6,
+      "per_desk": 1,
+      "aisles": [],
+      "disabled": [],
+      "capacity": 30,
+      "order": "straight",
+      "direction": "horizontal",
+      "availability": [],
+      "invigilators": null,
+      "id": "r1"
+    },
+    {
+      "code": "03",
+      "name": "第03考场",
+      "location": "教学楼1层",
+      "rows": 5,
+      "cols": 6,
+      "per_desk": 1,
+      "aisles": [],
+      "disabled": [],
+      "capacity": 30,
+      "order": "straight",
+      "direction": "horizontal",
+      "availability": [],
+      "invigilators": null,
+      "id": "r2"
+    },
+    {
+      "code": "04",
+      "name": "第04考场",
+      "location": "教学楼1层",
+      "rows": 5,
+      "cols": 6,
+      "per_desk": 1,
+      "aisles": [],
+      "disabled": [],
+      "capacity": 30,
+      "order": "straight",
+      "direction": "horizontal",
+      "availability": [],
+      "invigilators": null,
+      "id": "r3"
+    },
+    {
+      "code": "05",
+      "name": "第05考场",
+      "location": "教学楼1层",
+      "rows": 5,
+      "cols": 6,
+      "per_desk": 1,
+      "aisles": [],
+      "disabled": [],
+      "capacity": 30,
+      "order": "straight",
+      "direction": "horizontal",
+      "availability": [],
+      "invigilators": null,
+      "id": "r4"
+    },
+    {
+      "code": "06",
+      "name": "第06考场",
+      "location": "教学楼1层",
+      "rows": 5,
+      "cols": 6,
+      "per_desk": 1,
+      "aisles": [],
+      "disabled": [],
+      "capacity": 30,
+      "order": "straight",
+      "direction": "horizontal",
+      "availability": [],
+      "invigilators": null,
+      "id": "r5"
+    }
+  ],
+  "teachers": [
+    {
+      "name": "虚构教师001",
+      "subjects": [
+        "物理"
+      ],
+      "classes": [],
+      "unavailable": [],
+      "id": "t0"
+    },
+    {
+      "name": "虚构教师002",
+      "subjects": [
+        "历史"
+      ],
+      "classes": [],
+      "unavailable": [],
+      "id": "t1"
+    },
+    {
+      "name": "虚构教师003",
+      "subjects": [
+        "体育"
+      ],
+      "classes": [],
+      "unavailable": [],
+      "id": "t2"
+    },
+    {
+      "name": "虚构教师004",
+      "subjects": [
+        "物理"
+      ],
+      "classes": [],
+      "unavailable": [],
+      "id": "t3"
+    },
+    {
+      "name": "虚构教师005",
+      "subjects": [
+        "历史"
+      ],
+      "classes": [],
+      "unavailable": [],
+      "id": "t4"
+    },
+    {
+      "name": "虚构教师006",
+      "subjects": [
+        "体育"
+      ],
+      "classes": [],
+      "unavailable": [],
+      "id": "t5"
+    },
+    {
+      "name": "虚构教师007",
+      "subjects": [
+        "物理"
+      ],
+      "classes": [],
+      "unavailable": [],
+      "id": "t6"
+    },
+    {
+      "name": "虚构教师008",
+      "subjects": [
+        "历史"
+      ],
+      "classes": [],
+      "unavailable": [],
+      "id": "t7"
+    },
+    {
+      "name": "虚构教师009",
+      "subjects": [
+        "体育"
+      ],
+      "classes": [],
+      "unavailable": [],
+      "id": "t8"
+    },
+    {
+      "name": "虚构教师010",
+      "subjects": [
+        "物理"
+      ],
+      "classes": [],
+      "unavailable": [],
+      "id": "t9"
+    },
+    {
+      "name": "虚构教师011",
+      "subjects": [
+        "历史"
+      ],
+      "classes": [],
+      "unavailable": [],
+      "id": "t10"
+    },
+    {
+      "name": "虚构教师012",
+      "subjects": [
+        "体育"
+      ],
+      "classes": [],
+      "unavailable": [],
+      "id": "t11"
+    },
+    {
+      "name": "虚构教师013",
+      "subjects": [
+        "物理"
+      ],
+      "classes": [],
+      "unavailable": [],
+      "id": "t12"
+    },
+    {
+      "name": "虚构教师014",
+      "subjects": [
+        "历史"
+      ],
+      "classes": [],
+      "unavailable": [],
+      "id": "t13"
+    },
+    {
+      "name": "虚构教师015",
+      "subjects": [
+        "体育"
+      ],
+      "classes": [],
+      "unavailable": [],
+      "id": "t14"
+    },
+    {
+      "name": "虚构教师016",
+      "subjects": [
+        "物理"
+      ],
+      "classes": [],
+      "unavailable": [],
+      "id": "t15"
+    },
+    {
+      "name": "虚构教师017",
+      "subjects": [
+        "历史"
+      ],
+      "classes": [],
+      "unavailable": [],
+      "id": "t16"
+    },
+    {
+      "name": "虚构教师018",
+      "subjects": [
+        "体育"
+      ],
+      "classes": [],
+      "unavailable": [],
+      "id": "t17"
+    }
+  ],
+  "exams": [
+    {
+      "grade": "七年级",
+      "subject": "语文",
+      "duration": 90,
+      "date": "2026-11-12",
+      "start": "08:30",
+      "end": "10:00",
+      "locked": false,
+      "special_seating": false,
+      "invigilators": null,
+      "id": "e0-0"
+    },
+    {
+      "grade": "七年级",
+      "subject": "数学",
+      "duration": 90,
+      "date": "2026-11-12",
+      "start": "14:00",
+      "end": "15:30",
+      "locked": false,
+      "special_seating": false,
+      "invigilators": null,
+      "id": "e0-1"
+    },
+    {
+      "grade": "七年级",
+      "subject": "英语",
+      "duration": 90,
+      "date": "2026-11-13",
+      "start": "08:30",
+      "end": "10:00",
+      "locked": false,
+      "special_seating": false,
+      "invigilators": null,
+      "id": "e0-2"
+    },
+    {
+      "grade": "八年级",
+      "subject": "语文",
+      "duration": 90,
+      "date": "2026-11-12",
+      "start": "08:30",
+      "end": "10:00",
+      "locked": false,
+      "special_seating": false,
+      "invigilators": null,
+      "id": "e1-0"
+    },
+    {
+      "grade": "八年级",
+      "subject": "数学",
+      "duration": 90,
+      "date": "2026-11-12",
+      "start": "14:00",
+      "end": "15:30",
+      "locked": false,
+      "special_seating": false,
+      "invigilators": null,
+      "id": "e1-1"
+    },
+    {
+      "grade": "八年级",
+      "subject": "英语",
+      "duration": 90,
+      "date": "2026-11-13",
+      "start": "08:30",
+      "end": "10:00",
+      "locked": false,
+      "special_seating": false,
+      "invigilators": null,
+      "id": "e1-2"
+    },
+    {
+      "grade": "九年级",
+      "subject": "语文",
+      "duration": 90,
+      "date": "2026-11-12",
+      "start": "08:30",
+      "end": "10:00",
+      "locked": false,
+      "special_seating": false,
+      "invigilators": null,
+      "id": "e2-0"
+    },
+    {
+      "grade": "九年级",
+      "subject": "数学",
+      "duration": 90,
+      "date": "2026-11-12",
+      "start": "14:00",
+      "end": "15:30",
+      "locked": false,
+      "special_seating": false,
+      "invigilators": null,
+      "id": "e2-1"
+    },
+    {
+      "grade": "九年级",
+      "subject": "英语",
+      "duration": 90,
+      "date": "2026-11-13",
+      "start": "08:30",
+      "end": "10:00",
+      "locked": false,
+      "special_seating": false,
+      "invigilators": null,
+      "id": "e2-2"
+    }
+  ],
+  "settings": {
+    "mode": "class",
+    "seed": 42,
+    "mix_grades": true,
+    "mix_groups": [
+      [
+        "七年级",
+        "八年级"
+      ]
+    ],
+    "invigilators": 2,
+    "avoid_subject": true,
+    "avoid_class": true,
+    "number_prefix": "",
+    "number_width": 5,
+    "number_start": 1,
+    "number_rule": "seat",
+    "slots": [
+      {
+        "date": "2026-11-12",
+        "start": "08:30",
+        "end": "10:30"
+      },
+      {
+        "date": "2026-11-12",
+        "start": "14:00",
+        "end": "16:00"
+      },
+      {
+        "date": "2026-11-13",
+        "start": "08:30",
+        "end": "10:30"
+      },
+      {
+        "date": "2026-11-13",
+        "start": "14:00",
+        "end": "16:00"
+      }
+    ],
+    "time_limit": 30,
+    "font_scale": 1,
+    "score_field": ""
+  },
+  "seats": {
+    "base": {}
+  },
+  "invigilation": {},
+  "history": [],
+  "number_sources": {},
+  "number_history": [],
+  "revision": 0
+}

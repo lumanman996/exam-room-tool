@@ -1,0 +1,2 @@
+# 虚构测试资料按 inventory.json 的原始字节核对，禁止 checkout 改写换行。
+testkit/** -text

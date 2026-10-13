@@ -1,0 +1,491 @@
+{
+  "basis": "手工固定位置与日程；不使用产品求解器或报表生成预期",
+  "students": 12,
+  "exam_rows": 36,
+  "base_positions": {
+    "s7-001": {
+      "room_id": "r01",
+      "seat": 1,
+      "locked": false
+    },
+    "s7-002": {
+      "room_id": "r01",
+      "seat": 2,
+      "locked": false
+    },
+    "s7-003": {
+      "room_id": "r01",
+      "seat": 3,
+      "locked": false
+    },
+    "s7-004": {
+      "room_id": "r01",
+      "seat": 4,
+      "locked": false
+    },
+    "s7-005": {
+      "room_id": "r01",
+      "seat": 5,
+      "locked": false
+    },
+    "s7-006": {
+      "room_id": "r01",
+      "seat": 6,
+      "locked": false
+    },
+    "s8-001": {
+      "room_id": "r01",
+      "seat": 1,
+      "locked": false
+    },
+    "s8-002": {
+      "room_id": "r01",
+      "seat": 2,
+      "locked": false
+    },
+    "s8-003": {
+      "room_id": "r01",
+      "seat": 3,
+      "locked": false
+    },
+    "s8-004": {
+      "room_id": "r01",
+      "seat": 4,
+      "locked": false
+    },
+    "s8-005": {
+      "room_id": "r01",
+      "seat": 5,
+      "locked": false
+    },
+    "s8-006": {
+      "room_id": "r01",
+      "seat": 6,
+      "locked": false
+    }
+  },
+  "invigilation": {
+    "r01|2026-11-12|08:30|10:00": [
+      {
+        "teacher_id": "t01",
+        "locked": false
+      },
+      {
+        "teacher_id": "t02",
+        "locked": false
+      }
+    ],
+    "r01|2026-11-12|14:00|15:30": [
+      {
+        "teacher_id": "t01",
+        "locked": false
+      },
+      {
+        "teacher_id": "t02",
+        "locked": false
+      }
+    ],
+    "r01|2026-11-13|08:30|10:00": [
+      {
+        "teacher_id": "t01",
+        "locked": false
+      },
+      {
+        "teacher_id": "t02",
+        "locked": false
+      }
+    ],
+    "r01|2026-11-14|08:30|10:00": [
+      {
+        "teacher_id": "t03",
+        "locked": false
+      },
+      {
+        "teacher_id": "t04",
+        "locked": false
+      }
+    ],
+    "r01|2026-11-14|14:00|15:30": [
+      {
+        "teacher_id": "t03",
+        "locked": false
+      },
+      {
+        "teacher_id": "t04",
+        "locked": false
+      }
+    ],
+    "r01|2026-11-15|08:30|10:00": [
+      {
+        "teacher_id": "t03",
+        "locked": false
+      },
+      {
+        "teacher_id": "t04",
+        "locked": false
+      }
+    ]
+  },
+  "exam_student_rows": [
+    {
+      "student_id": "s7-001",
+      "exam_id": "e7-1",
+      "number": "0010101",
+      "room_id": "r01",
+      "seat": 1,
+      "date": "2026-11-12",
+      "start": "08:30",
+      "end": "10:00"
+    },
+    {
+      "student_id": "s7-002",
+      "exam_id": "e7-1",
+      "number": "0010102",
+      "room_id": "r01",
+      "seat": 2,
+      "date": "2026-11-12",
+      "start": "08:30",
+      "end": "10:00"
+    },
+    {
+      "student_id": "s7-003",
+      "exam_id": "e7-1",
+      "number": "0010103",
+      "room_id": "r01",
+      "seat": 3,
+      "date": "2026-11-12",
+      "start": "08:30",
+      "end": "10:00"
+    },
+    {
+      "student_id": "s7-004",
+      "exam_id": "e7-1",
+      "number": "0010104",
+      "room_id": "r01",
+      "seat": 4,
+      "date": "2026-11-12",
+      "start": "08:30",
+      "end": "10:00"
+    },
+    {
+      "student_id": "s7-005",
+      "exam_id": "e7-1",
+      "number": "0010105",
+      "room_id": "r01",
+      "seat": 5,
+      "date": "2026-11-12",
+      "start": "08:30",
+      "end": "10:00"
+    },
+    {
+      "student_id": "s7-006",
+      "exam_id": "e7-1",
+      "number": "0010106",
+      "room_id": "r01",
+      "seat": 6,
+      "date": "2026-11-12",
+      "start": "08:30",
+      "end": "10:00"
+    },
+    {
+      "student_id": "s7-001",
+      "exam_id": "e7-2",
+      "number": "0010101",
+      "room_id": "r01",
+      "seat": 1,
+      "date": "2026-11-12",
+      "start": "14:00",
+      "end": "15:30"
+    },
+    {
+      "student_id": "s7-002",
+      "exam_id": "e7-2",
+      "number": "0010102",
+      "room_id": "r01",
+      "seat": 2,
+      "date": "2026-11-12",
+      "start": "14:00",
+      "end": "15:30"
+    },
+    {
+      "student_id": "s7-003",
+      "exam_id": "e7-2",
+      "number": "0010103",
+      "room_id": "r01",
+      "seat": 3,
+      "date": "2026-11-12",
+      "start": "14:00",
+      "end": "15:30"
+    },
+    {
+      "student_id": "s7-004",
+      "exam_id": "e7-2",
+      "number": "0010104",
+      "room_id": "r01",
+      "seat": 4,
+      "date": "2026-11-12",
+      "start": "14:00",
+      "end": "15:30"
+    },
+    {
+      "student_id": "s7-005",
+      "exam_id": "e7-2",
+      "number": "0010105",
+      "room_id": "r01",
+      "seat": 5,
+      "date": "2026-11-12",
+      "start": "14:00",
+      "end": "15:30"
+    },
+    {
+      "student_id": "s7-006",
+      "exam_id": "e7-2",
+      "number": "0010106",
+      "room_id": "r01",
+      "seat": 6,
+      "date": "2026-11-12",
+      "start": "14:00",
+      "end": "15:30"
+    },
+    {
+      "student_id": "s7-001",
+      "exam_id": "e7-3",
+      "number": "0010101",
+      "room_id": "r01",
+      "seat": 1,
+      "date": "2026-11-13",
+      "start": "08:30",
+      "end": "10:00"
+    },
+    {
+      "student_id": "s7-002",
+      "exam_id": "e7-3",
+      "number": "0010102",
+      "room_id": "r01",
+      "seat": 2,
+      "date": "2026-11-13",
+      "start": "08:30",
+      "end": "10:00"
+    },
+    {
+      "student_id": "s7-003",
+      "exam_id": "e7-3",
+      "number": "0010103",
+      "room_id": "r01",
+      "seat": 3,
+      "date": "2026-11-13",
+      "start": "08:30",
+      "end": "10:00"
+    },
+    {
+      "student_id": "s7-004",
+      "exam_id": "e7-3",
+      "number": "0010104",
+      "room_id": "r01",
+      "seat": 4,
+      "date": "2026-11-13",
+      "start": "08:30",
+      "end": "10:00"
+    },
+    {
+      "student_id": "s7-005",
+      "exam_id": "e7-3",
+      "number": "0010105",
+      "room_id": "r01",
+      "seat": 5,
+      "date": "2026-11-13",
+      "start": "08:30",
+      "end": "10:00"
+    },
+    {
+      "student_id": "s7-006",
+      "exam_id": "e7-3",
+      "number": "0010106",
+      "room_id": "r01",
+      "seat": 6,
+      "date": "2026-11-13",
+      "start": "08:30",
+      "end": "10:00"
+    },
+    {
+      "student_id": "s8-001",
+      "exam_id": "e8-1",
+      "number": "0080101",
+      "room_id": "r01",
+      "seat": 1,
+      "date": "2026-11-14",
+      "start": "08:30",
+      "end": "10:00"
+    },
+    {
+      "student_id": "s8-002",
+      "exam_id": "e8-1",
+      "number": "0080102",
+      "room_id": "r01",
+      "seat": 2,
+      "date": "2026-11-14",
+      "start": "08:30",
+      "end": "10:00"
+    },
+    {
+      "student_id": "s8-003",
+      "exam_id": "e8-1",
+      "number": "0080103",
+      "room_id": "r01",
+      "seat": 3,
+      "date": "2026-11-14",
+      "start": "08:30",
+      "end": "10:00"
+    },
+    {
+      "student_id": "s8-004",
+      "exam_id": "e8-1",
+      "number": "0080104",
+      "room_id": "r01",
+      "seat": 4,
+      "date": "2026-11-14",
+      "start": "08:30",
+      "end": "10:00"
+    },
+    {
+      "student_id": "s8-005",
+      "exam_id": "e8-1",
+      "number": "0080105",
+      "room_id": "r01",
+      "seat": 5,
+      "date": "2026-11-14",
+      "start": "08:30",
+      "end": "10:00"
+    },
+    {
+      "student_id": "s8-006",
+      "exam_id": "e8-1",
+      "number": "0080106",
+      "room_id": "r01",
+      "seat": 6,
+      "date": "2026-11-14",
+      "start": "08:30",
+      "end": "10:00"
+    },
+    {
+      "student_id": "s8-001",
+      "exam_id": "e8-2",
+      "number": "0080101",
+      "room_id": "r01",
+      "seat": 1,
+      "date": "2026-11-14",
+      "start": "14:00",
+      "end": "15:30"
+    },
+    {
+      "student_id": "s8-002",
+      "exam_id": "e8-2",
+      "number": "0080102",
+      "room_id": "r01",
+      "seat": 2,
+      "date": "2026-11-14",
+      "start": "14:00",
+      "end": "15:30"
+    },
+    {
+      "student_id": "s8-003",
+      "exam_id": "e8-2",
+      "number": "0080103",
+      "room_id": "r01",
+      "seat": 3,
+      "date": "2026-11-14",
+      "start": "14:00",
+      "end": "15:30"
+    },
+    {
+      "student_id": "s8-004",
+      "exam_id": "e8-2",
+      "number": "0080104",
+      "room_id": "r01",
+      "seat": 4,
+      "date": "2026-11-14",
+      "start": "14:00",
+      "end": "15:30"
+    },
+    {
+      "student_id": "s8-005",
+      "exam_id": "e8-2",
+      "number": "0080105",
+      "room_id": "r01",
+      "seat": 5,
+      "date": "2026-11-14",
+      "start": "14:00",
+      "end": "15:30"
+    },
+    {
+      "student_id": "s8-006",
+      "exam_id": "e8-2",
+      "number": "0080106",
+      "room_id": "r01",
+      "seat": 6,
+      "date": "2026-11-14",
+      "start": "14:00",
+      "end": "15:30"
+    },
+    {
+      "student_id": "s8-001",
+      "exam_id": "e8-3",
+      "number": "0080101",
+      "room_id": "r01",
+      "seat": 1,
+      "date": "2026-11-15",
+      "start": "08:30",
+      "end": "10:00"
+    },
+    {
+      "student_id": "s8-002",
+      "exam_id": "e8-3",
+      "number": "0080102",
+      "room_id": "r01",
+      "seat": 2,
+      "date": "2026-11-15",
+      "start": "08:30",
+      "end": "10:00"
+    },
+    {
+      "student_id": "s8-003",
+      "exam_id": "e8-3",
+      "number": "0080103",
+      "room_id": "r01",
+      "seat": 3,
+      "date": "2026-11-15",
+      "start": "08:30",
+      "end": "10:00"
+    },
+    {
+      "student_id": "s8-004",
+      "exam_id": "e8-3",
+      "number": "0080104",
+      "room_id": "r01",
+      "seat": 4,
+      "date": "2026-11-15",
+      "start": "08:30",
+      "end": "10:00"
+    },
+    {
+      "student_id": "s8-005",
+      "exam_id": "e8-3",
+      "number": "0080105",
+      "room_id": "r01",
+      "seat": 5,
+      "date": "2026-11-15",
+      "start": "08:30",
+      "end": "10:00"
+    },
+    {
+      "student_id": "s8-006",
+      "exam_id": "e8-3",
+      "number": "0080106",
+      "room_id": "r01",
+      "seat": 6,
+      "date": "2026-11-15",
+      "start": "08:30",
+      "end": "10:00"
+    }
+  ]
+}

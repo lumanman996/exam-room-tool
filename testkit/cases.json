@@ -1,0 +1,884 @@
+{
+  "version": 1,
+  "name": "考场编排·验测台",
+  "seed": 42,
+  "fictional": true,
+  "source_date": "2026-10-06",
+  "scope": "资料与预期清单；完整验测执行器尚未实现",
+  "cases": [
+    {
+      "id": "C01_tiny_completed",
+      "name": "12人已完成标准方案",
+      "type": "plan",
+      "path": "fixtures/C01_tiny_completed/方案.json",
+      "counts": {
+        "students": 12,
+        "rooms": 2,
+        "teachers": 4,
+        "exams": 6
+      },
+      "steps": [
+        "打开方案",
+        "检查",
+        "正式导出全部材料",
+        "关闭后重开并比对标准答案"
+      ],
+      "expected": {
+        "required_error_codes": [],
+        "required_warning_codes": [],
+        "zero_hard_errors": true,
+        "exam_rows": 36,
+        "duties": 6
+      },
+      "golden": true,
+      "execution_status": "未运行"
+    },
+    {
+      "id": "C02_normal_144",
+      "name": "144人正常完整流程",
+      "type": "plan",
+      "path": "fixtures/C02_normal_144/方案.json",
+      "counts": {
+        "students": 144,
+        "rooms": 6,
+        "teachers": 18,
+        "exams": 9
+      },
+      "steps": [
+        "导入四类表",
+        "排座",
+        "排监考",
+        "检查确认",
+        "导出全部材料",
+        "重开"
+      ],
+      "expected": {
+        "required_error_codes": [],
+        "required_warning_codes": [],
+        "zero_hard_errors": false,
+        "after_solve_zero_errors": true,
+        "exam_rows_after_solve": 432
+      },
+      "golden": false,
+      "execution_status": "未运行"
+    },
+    {
+      "id": "C03_unscheduled",
+      "name": "未安排日程",
+      "type": "plan",
+      "path": "fixtures/C03_unscheduled/方案.json",
+      "counts": {
+        "students": 144,
+        "rooms": 6,
+        "teachers": 18,
+        "exams": 9
+      },
+      "steps": [
+        "自动日程",
+        "排座与监考",
+        "检查并导出"
+      ],
+      "expected": {
+        "required_error_codes": [
+          "exam_time"
+        ],
+        "required_warning_codes": [],
+        "zero_hard_errors": false,
+        "after_solve_zero_errors": true
+      },
+      "golden": false,
+      "execution_status": "未运行"
+    },
+    {
+      "id": "C04_locked",
+      "name": "锁定与重排",
+      "type": "plan",
+      "path": "fixtures/C04_locked/方案.json",
+      "counts": {
+        "students": 12,
+        "rooms": 2,
+        "teachers": 4,
+        "exams": 6
+      },
+      "steps": [
+        "记录锁定",
+        "重新排时间、座位和监考",
+        "检查锁定保留",
+        "保存重开"
+      ],
+      "expected": {
+        "required_error_codes": [],
+        "required_warning_codes": [],
+        "zero_hard_errors": true,
+        "preserved": [
+          "e7-1",
+          "s7-001",
+          "t01"
+        ]
+      },
+      "golden": false,
+      "execution_status": "未运行"
+    },
+    {
+      "id": "C05_special_subject",
+      "name": "单科座位与参试子集",
+      "type": "plan",
+      "path": "fixtures/C05_special_subject/方案.json",
+      "counts": {
+        "students": 12,
+        "rooms": 2,
+        "teachers": 4,
+        "exams": 6
+      },
+      "steps": [
+        "检查数学只含5名七年级学生",
+        "比对固定考号",
+        "导出数学材料"
+      ],
+      "expected": {
+        "required_error_codes": [],
+        "required_warning_codes": [],
+        "zero_hard_errors": true,
+        "exam_rows": 35,
+        "excluded_math_student": "s7-001"
+      },
+      "golden": true,
+      "execution_status": "未运行"
+    },
+    {
+      "id": "C06_duplicate_number",
+      "name": "重复考号",
+      "type": "plan",
+      "path": "fixtures/C06_duplicate_number/方案.json",
+      "counts": {
+        "students": 12,
+        "rooms": 2,
+        "teachers": 4,
+        "exams": 6
+      },
+      "steps": [
+        "检查定位两位学生",
+        "正式导出拒绝",
+        "改号后复核"
+      ],
+      "expected": {
+        "required_error_codes": [
+          "number_duplicate"
+        ],
+        "required_warning_codes": [],
+        "zero_hard_errors": false
+      },
+      "golden": false,
+      "execution_status": "未运行"
+    },
+    {
+      "id": "C07_missing_required",
+      "name": "学生必填资料缺失",
+      "type": "plan",
+      "path": "fixtures/C07_missing_required/方案.json",
+      "counts": {
+        "students": 12,
+        "rooms": 2,
+        "teachers": 4,
+        "exams": 6
+      },
+      "steps": [
+        "检查",
+        "修复必填字段",
+        "复核"
+      ],
+      "expected": {
+        "required_error_codes": [
+          "student_data"
+        ],
+        "required_warning_codes": [],
+        "zero_hard_errors": false
+      },
+      "golden": false,
+      "execution_status": "未运行"
+    },
+    {
+      "id": "C08_same_name_score",
+      "name": "同名与缺成绩",
+      "type": "plan",
+      "path": "fixtures/C08_same_name_score/方案.json",
+      "counts": {
+        "students": 12,
+        "rooms": 2,
+        "teachers": 4,
+        "exams": 6
+      },
+      "steps": [
+        "同名学生均保留",
+        "成绩排序缺成绩最后",
+        "提示不阻止正式导出"
+      ],
+      "expected": {
+        "required_error_codes": [],
+        "required_warning_codes": [
+          "same_name",
+          "missing_score"
+        ],
+        "zero_hard_errors": true
+      },
+      "golden": false,
+      "execution_status": "未运行"
+    },
+    {
+      "id": "C09_disabled_capacity",
+      "name": "停用座位与容量不符",
+      "type": "plan",
+      "path": "fixtures/C09_disabled_capacity/方案.json",
+      "counts": {
+        "students": 12,
+        "rooms": 2,
+        "teachers": 4,
+        "exams": 6
+      },
+      "steps": [
+        "检查",
+        "减少容量并重新安排",
+        "复核"
+      ],
+      "expected": {
+        "required_error_codes": [
+          "room_capacity",
+          "seat_invalid"
+        ],
+        "required_warning_codes": [],
+        "zero_hard_errors": false
+      },
+      "golden": false,
+      "execution_status": "未运行"
+    },
+    {
+      "id": "C10_duplicate_seat",
+      "name": "同时重复占座",
+      "type": "plan",
+      "path": "fixtures/C10_duplicate_seat/方案.json",
+      "counts": {
+        "students": 12,
+        "rooms": 2,
+        "teachers": 4,
+        "exams": 6
+      },
+      "steps": [
+        "检查定位学生",
+        "正式导出拒绝",
+        "恢复位置再复核"
+      ],
+      "expected": {
+        "required_error_codes": [
+          "seat_duplicate"
+        ],
+        "required_warning_codes": [],
+        "zero_hard_errors": false
+      },
+      "golden": false,
+      "execution_status": "未运行"
+    },
+    {
+      "id": "C11_exam_overlap",
+      "name": "同年级考试时间重叠",
+      "type": "plan",
+      "path": "fixtures/C11_exam_overlap/方案.json",
+      "counts": {
+        "students": 12,
+        "rooms": 2,
+        "teachers": 4,
+        "exams": 6
+      },
+      "steps": [
+        "检查时间冲突",
+        "修改日程后复核"
+      ],
+      "expected": {
+        "required_error_codes": [
+          "grade_overlap",
+          "student_overlap"
+        ],
+        "required_warning_codes": [],
+        "zero_hard_errors": false
+      },
+      "golden": false,
+      "execution_status": "未运行"
+    },
+    {
+      "id": "C12_room_unavailable",
+      "name": "考场时段不可用",
+      "type": "plan",
+      "path": "fixtures/C12_room_unavailable/方案.json",
+      "counts": {
+        "students": 12,
+        "rooms": 2,
+        "teachers": 4,
+        "exams": 6
+      },
+      "steps": [
+        "检查",
+        "修复时段或换场"
+      ],
+      "expected": {
+        "required_error_codes": [
+          "room_unavailable"
+        ],
+        "required_warning_codes": [],
+        "zero_hard_errors": false
+      },
+      "golden": false,
+      "execution_status": "未运行"
+    },
+    {
+      "id": "C13_teacher_unavailable",
+      "name": "教师时段不可用",
+      "type": "plan",
+      "path": "fixtures/C13_teacher_unavailable/方案.json",
+      "counts": {
+        "students": 12,
+        "rooms": 2,
+        "teachers": 4,
+        "exams": 6
+      },
+      "steps": [
+        "检查",
+        "换合格教师后复核"
+      ],
+      "expected": {
+        "required_error_codes": [
+          "teacher_unavailable"
+        ],
+        "required_warning_codes": [],
+        "zero_hard_errors": false
+      },
+      "golden": false,
+      "execution_status": "未运行"
+    },
+    {
+      "id": "C14_subject_avoidance",
+      "name": "任教学科回避",
+      "type": "plan",
+      "path": "fixtures/C14_subject_avoidance/方案.json",
+      "counts": {
+        "students": 12,
+        "rooms": 2,
+        "teachers": 4,
+        "exams": 6
+      },
+      "steps": [
+        "检查",
+        "人工指定同科教师应拒绝",
+        "换教师"
+      ],
+      "expected": {
+        "required_error_codes": [
+          "subject_avoidance"
+        ],
+        "required_warning_codes": [],
+        "zero_hard_errors": false
+      },
+      "golden": false,
+      "execution_status": "未运行"
+    },
+    {
+      "id": "C15_class_avoidance",
+      "name": "任教班级回避",
+      "type": "plan",
+      "path": "fixtures/C15_class_avoidance/方案.json",
+      "counts": {
+        "students": 12,
+        "rooms": 2,
+        "teachers": 4,
+        "exams": 6
+      },
+      "steps": [
+        "检查",
+        "人工指定本班教师应拒绝",
+        "换教师"
+      ],
+      "expected": {
+        "required_error_codes": [
+          "class_avoidance"
+        ],
+        "required_warning_codes": [],
+        "zero_hard_errors": false
+      },
+      "golden": false,
+      "execution_status": "未运行"
+    },
+    {
+      "id": "C16_teacher_overlap",
+      "name": "教师同时两场",
+      "type": "plan",
+      "path": "fixtures/C16_teacher_overlap/方案.json",
+      "counts": {
+        "students": 12,
+        "rooms": 2,
+        "teachers": 4,
+        "exams": 6
+      },
+      "steps": [
+        "检查",
+        "拒绝新的冲突调整",
+        "改回合格教师"
+      ],
+      "expected": {
+        "required_error_codes": [
+          "teacher_overlap"
+        ],
+        "required_warning_codes": [],
+        "zero_hard_errors": false
+      },
+      "golden": false,
+      "execution_status": "未运行"
+    },
+    {
+      "id": "C17_teacher_shortage",
+      "name": "教师不足",
+      "type": "plan",
+      "path": "fixtures/C17_teacher_shortage/方案.json",
+      "counts": {
+        "students": 12,
+        "rooms": 2,
+        "teachers": 3,
+        "exams": 6
+      },
+      "steps": [
+        "自动监考",
+        "核对partial及具体空缺",
+        "补教师后补排"
+      ],
+      "expected": {
+        "required_error_codes": [
+          "invigilator_missing"
+        ],
+        "required_warning_codes": [],
+        "zero_hard_errors": false,
+        "solver_stage": "invigilators",
+        "solver_status": [
+          "partial"
+        ],
+        "missing_per_slot": 1
+      },
+      "golden": false,
+      "execution_status": "未运行"
+    },
+    {
+      "id": "C18_number_mismatch",
+      "name": "换座后考号不符",
+      "type": "plan",
+      "path": "fixtures/C18_number_mismatch/方案.json",
+      "counts": {
+        "students": 12,
+        "rooms": 2,
+        "teachers": 4,
+        "exams": 6
+      },
+      "steps": [
+        "保留旧考号",
+        "预览覆盖生成001前缀",
+        "确认后复核"
+      ],
+      "expected": {
+        "required_error_codes": [
+          "number_seat_mismatch"
+        ],
+        "required_warning_codes": [],
+        "zero_hard_errors": false,
+        "mismatch_students": 2
+      },
+      "golden": false,
+      "execution_status": "未运行"
+    },
+    {
+      "id": "C19_legacy",
+      "name": "旧方案兼容",
+      "type": "plan",
+      "path": "fixtures/C19_legacy/方案.json",
+      "counts": {
+        "students": 12,
+        "rooms": 2,
+        "teachers": 4,
+        "exams": 6
+      },
+      "steps": [
+        "导入旧方案",
+        "确认默认横排",
+        "打开考号预览",
+        "保存重开"
+      ],
+      "expected": {
+        "required_error_codes": [],
+        "required_warning_codes": [],
+        "zero_hard_errors": true
+      },
+      "golden": false,
+      "execution_status": "未运行"
+    },
+    {
+      "id": "C20_large_mixed",
+      "name": "1500人允许混排",
+      "type": "plan",
+      "path": "fixtures/C20_large_mixed/方案.json",
+      "counts": {
+        "students": 1500,
+        "rooms": 50,
+        "teachers": 120,
+        "exams": 9
+      },
+      "steps": [
+        "排座",
+        "排监考",
+        "记录耗时内存",
+        "独立核对覆盖与回避"
+      ],
+      "expected": {
+        "required_error_codes": [],
+        "required_warning_codes": [],
+        "zero_hard_errors": false,
+        "after_solve_zero_errors": true,
+        "exam_rows_after_solve": 4500,
+        "scale": true
+      },
+      "golden": false,
+      "execution_status": "未运行"
+    },
+    {
+      "id": "C21_large_separate_shortage",
+      "name": "1500人禁混且少一场",
+      "type": "plan",
+      "path": "fixtures/C21_large_separate_shortage/方案.json",
+      "counts": {
+        "students": 1500,
+        "rooms": 50,
+        "teachers": 120,
+        "exams": 9
+      },
+      "steps": [
+        "排座",
+        "解释至少51场",
+        "不得自动放宽混排"
+      ],
+      "expected": {
+        "required_error_codes": [],
+        "required_warning_codes": [],
+        "zero_hard_errors": false,
+        "solver_stage": "seats",
+        "solver_status": [
+          "infeasible"
+        ],
+        "minimum_rooms": 51,
+        "scale": true
+      },
+      "golden": false,
+      "execution_status": "未运行"
+    },
+    {
+      "id": "C22_selected_mixing",
+      "name": "七八混排九独立",
+      "type": "plan",
+      "path": "fixtures/C22_selected_mixing/方案.json",
+      "counts": {
+        "students": 144,
+        "rooms": 6,
+        "teachers": 18,
+        "exams": 9
+      },
+      "steps": [
+        "排座",
+        "检查七八交插",
+        "九年级不与七八共场",
+        "保存重开"
+      ],
+      "expected": {
+        "required_error_codes": [],
+        "required_warning_codes": [],
+        "zero_hard_errors": false,
+        "allowed_mixing": [
+          [
+            "七年级",
+            "八年级"
+          ]
+        ],
+        "after_solve_zero_errors": true
+      },
+      "golden": false,
+      "execution_status": "未运行"
+    },
+    {
+      "id": "C23_layout_routes",
+      "name": "横竖与蛇形布局",
+      "type": "plan",
+      "path": "fixtures/C23_layout_routes/方案.json",
+      "counts": {
+        "students": 12,
+        "rooms": 2,
+        "teachers": 4,
+        "exams": 6
+      },
+      "steps": [
+        "对照物理坐标",
+        "切换双人桌与过道",
+        "停用后重排",
+        "屏幕与打印比对"
+      ],
+      "expected": {
+        "required_error_codes": [],
+        "required_warning_codes": [],
+        "zero_hard_errors": true
+      },
+      "golden": false,
+      "execution_status": "未运行"
+    },
+    {
+      "id": "C24_lock_conflict",
+      "name": "锁定位置互相冲突",
+      "type": "plan",
+      "path": "fixtures/C24_lock_conflict/方案.json",
+      "counts": {
+        "students": 12,
+        "rooms": 2,
+        "teachers": 4,
+        "exams": 6
+      },
+      "steps": [
+        "重新排座",
+        "明确报告问题",
+        "不得解除锁定绕过"
+      ],
+      "expected": {
+        "required_error_codes": [
+          "seat_duplicate"
+        ],
+        "required_warning_codes": [],
+        "zero_hard_errors": false,
+        "solver_stage": "seats",
+        "solver_status": [
+          "infeasible",
+          "invalid"
+        ]
+      },
+      "golden": false,
+      "execution_status": "未运行"
+    },
+    {
+      "id": "C25_stale",
+      "name": "修改后待复核",
+      "type": "plan",
+      "path": "fixtures/C25_stale/方案.json",
+      "counts": {
+        "students": 12,
+        "rooms": 2,
+        "teachers": 4,
+        "exams": 6
+      },
+      "steps": [
+        "正式导出拒绝",
+        "检查无其他硬问题后确认",
+        "保存重开"
+      ],
+      "expected": {
+        "required_error_codes": [
+          "stale"
+        ],
+        "required_warning_codes": [],
+        "zero_hard_errors": false
+      },
+      "golden": false,
+      "execution_status": "未运行"
+    },
+    {
+      "id": "C26_safe_text",
+      "name": "特殊文本与导出安全",
+      "type": "plan",
+      "path": "fixtures/C26_safe_text/方案.json",
+      "counts": {
+        "students": 12,
+        "rooms": 2,
+        "teachers": 4,
+        "exams": 6
+      },
+      "steps": [
+        "导出Excel字符串不是公式",
+        "网页按文本显示",
+        "不执行脚本"
+      ],
+      "expected": {
+        "required_error_codes": [],
+        "required_warning_codes": [],
+        "zero_hard_errors": true
+      },
+      "golden": false,
+      "execution_status": "未运行"
+    },
+    {
+      "id": "C27_nonoverlap_reuse",
+      "name": "非重叠时段复用座位",
+      "type": "plan",
+      "path": "fixtures/C27_nonoverlap_reuse/方案.json",
+      "counts": {
+        "students": 12,
+        "rooms": 2,
+        "teachers": 4,
+        "exams": 6
+      },
+      "steps": [
+        "检查不同日期同位置合法",
+        "分别按001和008前缀保留号码",
+        "导出材料核对日期"
+      ],
+      "expected": {
+        "required_error_codes": [],
+        "required_warning_codes": [],
+        "zero_hard_errors": true,
+        "exam_rows": 36
+      },
+      "golden": true,
+      "execution_status": "未运行"
+    },
+    {
+      "id": "I01",
+      "name": "多工作表标题行",
+      "type": "import",
+      "path": "fixtures/imports/多工作表标题行.xlsx",
+      "expected": {
+        "kind": "students",
+        "count": 144,
+        "sheet": "总名单",
+        "header_row": 3
+      },
+      "steps": [
+        "预检自动选择总名单和第三行",
+        "确认导入"
+      ],
+      "execution_status": "未运行"
+    },
+    {
+      "id": "I02",
+      "name": "中文CSV编码",
+      "type": "import",
+      "path": "fixtures/imports/学生GB18030.csv",
+      "expected": {
+        "kind": "students",
+        "count": 144,
+        "leading_zero": true
+      },
+      "steps": [
+        "预检",
+        "导入",
+        "检查中文和前导零"
+      ],
+      "execution_status": "未运行"
+    },
+    {
+      "id": "I03",
+      "name": "别名列和额外成绩列",
+      "type": "import",
+      "path": "fixtures/imports/别名与原始成绩列.xlsx",
+      "expected": {
+        "kind": "students",
+        "count": 144,
+        "original_column": "第二次总分"
+      },
+      "steps": [
+        "预检映射",
+        "导入后原始列保留",
+        "切换成绩排序列"
+      ],
+      "execution_status": "未运行"
+    },
+    {
+      "id": "I04",
+      "name": "导入重复考号",
+      "type": "import",
+      "path": "fixtures/imports/重复考号.csv",
+      "expected": {
+        "kind": "students",
+        "count": 2,
+        "validation_error": "number_duplicate"
+      },
+      "steps": [
+        "预检可读",
+        "导入后统一检查定位重复",
+        "修复"
+      ],
+      "execution_status": "未运行"
+    },
+    {
+      "id": "I05",
+      "name": "导入缺姓名",
+      "type": "import",
+      "path": "fixtures/imports/缺姓名.csv",
+      "expected": {
+        "kind": "students",
+        "count": 1,
+        "validation_error": "student_data"
+      },
+      "steps": [
+        "预检可读",
+        "导入后检查定位必填缺失"
+      ],
+      "execution_status": "未运行"
+    },
+    {
+      "id": "I06",
+      "name": "损坏Excel",
+      "type": "import",
+      "path": "fixtures/imports/损坏文件.xlsx",
+      "expected": {
+        "kind": "students",
+        "preview_reject": true
+      },
+      "steps": [
+        "预检拒绝并显示中文说明",
+        "当前方案不变"
+      ],
+      "execution_status": "未运行"
+    },
+    {
+      "id": "I07",
+      "name": "损坏JSON",
+      "type": "import",
+      "path": "fixtures/imports/损坏方案.json",
+      "expected": {
+        "plan_import_reject": true
+      },
+      "steps": [
+        "打开方案拒绝",
+        "当前方案不变"
+      ],
+      "execution_status": "未运行"
+    },
+    {
+      "id": "I08",
+      "name": "不支持的方案版本",
+      "type": "import",
+      "path": "fixtures/imports/不支持版本.json",
+      "expected": {
+        "normalize_reject": true,
+        "plan_import_reject": true
+      },
+      "steps": [
+        "打开方案拒绝",
+        "当前方案不变"
+      ],
+      "execution_status": "未运行"
+    },
+    {
+      "id": "I09",
+      "name": "错误时段文本",
+      "type": "import",
+      "path": "fixtures/imports/错误教师时段.csv",
+      "expected": {
+        "kind": "teachers",
+        "count": 1,
+        "import_reject": true
+      },
+      "steps": [
+        "预检可读",
+        "确认导入时拒绝",
+        "当前方案不变"
+      ],
+      "execution_status": "未运行"
+    }
+  ]
+}

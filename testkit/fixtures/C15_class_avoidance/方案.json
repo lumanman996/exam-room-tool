@@ -1,0 +1,519 @@
+{
+  "version": 1,
+  "id": "c15-class-avoidance",
+  "name": "虚构·任教班级回避",
+  "school": "验测中学（完全虚构）",
+  "created_at": "2026-10-06T00:00:00",
+  "updated_at": "2026-10-06T00:00:00",
+  "students": [
+    {
+      "name": "虚构学生七001",
+      "grade": "七年级",
+      "class_name": "七1",
+      "student_no": "007001",
+      "number": "0010101",
+      "score": 400.0,
+      "subjects": [],
+      "original": {},
+      "id": "s7-001"
+    },
+    {
+      "name": "虚构学生七002",
+      "grade": "七年级",
+      "class_name": "七2",
+      "student_no": "007002",
+      "number": "0010102",
+      "score": 410.0,
+      "subjects": [],
+      "original": {},
+      "id": "s7-002"
+    },
+    {
+      "name": "虚构学生七003",
+      "grade": "七年级",
+      "class_name": "七1",
+      "student_no": "007003",
+      "number": "0010103",
+      "score": 420.0,
+      "subjects": [],
+      "original": {},
+      "id": "s7-003"
+    },
+    {
+      "name": "虚构学生七004",
+      "grade": "七年级",
+      "class_name": "七2",
+      "student_no": "007004",
+      "number": "0010104",
+      "score": 430.0,
+      "subjects": [],
+      "original": {},
+      "id": "s7-004"
+    },
+    {
+      "name": "虚构学生七005",
+      "grade": "七年级",
+      "class_name": "七1",
+      "student_no": "007005",
+      "number": "0010105",
+      "score": 440.0,
+      "subjects": [],
+      "original": {},
+      "id": "s7-005"
+    },
+    {
+      "name": "虚构学生七006",
+      "grade": "七年级",
+      "class_name": "七2",
+      "student_no": "007006",
+      "number": "0010106",
+      "score": 450.0,
+      "subjects": [],
+      "original": {},
+      "id": "s7-006"
+    },
+    {
+      "name": "虚构学生八001",
+      "grade": "八年级",
+      "class_name": "八1",
+      "student_no": "008001",
+      "number": "0010201",
+      "score": 400.0,
+      "subjects": [],
+      "original": {},
+      "id": "s8-001"
+    },
+    {
+      "name": "虚构学生八002",
+      "grade": "八年级",
+      "class_name": "八2",
+      "student_no": "008002",
+      "number": "0010202",
+      "score": 410.0,
+      "subjects": [],
+      "original": {},
+      "id": "s8-002"
+    },
+    {
+      "name": "虚构学生八003",
+      "grade": "八年级",
+      "class_name": "八1",
+      "student_no": "008003",
+      "number": "0010203",
+      "score": 420.0,
+      "subjects": [],
+      "original": {},
+      "id": "s8-003"
+    },
+    {
+      "name": "虚构学生八004",
+      "grade": "八年级",
+      "class_name": "八2",
+      "student_no": "008004",
+      "number": "0010204",
+      "score": 430.0,
+      "subjects": [],
+      "original": {},
+      "id": "s8-004"
+    },
+    {
+      "name": "虚构学生八005",
+      "grade": "八年级",
+      "class_name": "八1",
+      "student_no": "008005",
+      "number": "0010205",
+      "score": 440.0,
+      "subjects": [],
+      "original": {},
+      "id": "s8-005"
+    },
+    {
+      "name": "虚构学生八006",
+      "grade": "八年级",
+      "class_name": "八2",
+      "student_no": "008006",
+      "number": "0010206",
+      "score": 450.0,
+      "subjects": [],
+      "original": {},
+      "id": "s8-006"
+    }
+  ],
+  "rooms": [
+    {
+      "code": "01",
+      "name": "虚构第01考场",
+      "location": "虚构教学楼一层",
+      "rows": 2,
+      "cols": 3,
+      "per_desk": 1,
+      "aisles": [],
+      "disabled": [],
+      "capacity": 6,
+      "order": "straight",
+      "direction": "horizontal",
+      "availability": [],
+      "invigilators": null,
+      "id": "r01"
+    },
+    {
+      "code": "02",
+      "name": "虚构第02考场",
+      "location": "虚构教学楼一层",
+      "rows": 2,
+      "cols": 3,
+      "per_desk": 1,
+      "aisles": [],
+      "disabled": [],
+      "capacity": 6,
+      "order": "straight",
+      "direction": "horizontal",
+      "availability": [],
+      "invigilators": null,
+      "id": "r02"
+    }
+  ],
+  "teachers": [
+    {
+      "name": "虚构教师001",
+      "subjects": [
+        "体育"
+      ],
+      "classes": [
+        "七1"
+      ],
+      "unavailable": [],
+      "id": "t01"
+    },
+    {
+      "name": "虚构教师002",
+      "subjects": [
+        "体育"
+      ],
+      "classes": [],
+      "unavailable": [],
+      "id": "t02"
+    },
+    {
+      "name": "虚构教师003",
+      "subjects": [
+        "体育"
+      ],
+      "classes": [],
+      "unavailable": [],
+      "id": "t03"
+    },
+    {
+      "name": "虚构教师004",
+      "subjects": [
+        "体育"
+      ],
+      "classes": [],
+      "unavailable": [],
+      "id": "t04"
+    }
+  ],
+  "exams": [
+    {
+      "grade": "七年级",
+      "subject": "语文",
+      "duration": 90,
+      "date": "2026-11-12",
+      "start": "08:30",
+      "end": "10:00",
+      "locked": false,
+      "special_seating": false,
+      "invigilators": null,
+      "id": "e7-1"
+    },
+    {
+      "grade": "七年级",
+      "subject": "数学",
+      "duration": 90,
+      "date": "2026-11-12",
+      "start": "14:00",
+      "end": "15:30",
+      "locked": false,
+      "special_seating": false,
+      "invigilators": null,
+      "id": "e7-2"
+    },
+    {
+      "grade": "七年级",
+      "subject": "英语",
+      "duration": 90,
+      "date": "2026-11-13",
+      "start": "08:30",
+      "end": "10:00",
+      "locked": false,
+      "special_seating": false,
+      "invigilators": null,
+      "id": "e7-3"
+    },
+    {
+      "grade": "八年级",
+      "subject": "语文",
+      "duration": 90,
+      "date": "2026-11-12",
+      "start": "08:30",
+      "end": "10:00",
+      "locked": false,
+      "special_seating": false,
+      "invigilators": null,
+      "id": "e8-1"
+    },
+    {
+      "grade": "八年级",
+      "subject": "数学",
+      "duration": 90,
+      "date": "2026-11-12",
+      "start": "14:00",
+      "end": "15:30",
+      "locked": false,
+      "special_seating": false,
+      "invigilators": null,
+      "id": "e8-2"
+    },
+    {
+      "grade": "八年级",
+      "subject": "英语",
+      "duration": 90,
+      "date": "2026-11-13",
+      "start": "08:30",
+      "end": "10:00",
+      "locked": false,
+      "special_seating": false,
+      "invigilators": null,
+      "id": "e8-3"
+    }
+  ],
+  "settings": {
+    "mode": "class",
+    "seed": 42,
+    "mix_grades": false,
+    "mix_groups": [],
+    "invigilators": 2,
+    "avoid_subject": true,
+    "avoid_class": true,
+    "number_prefix": "001",
+    "number_width": 5,
+    "number_start": 1,
+    "number_rule": "seat",
+    "slots": [
+      {
+        "date": "2026-11-12",
+        "start": "08:30",
+        "end": "10:30"
+      },
+      {
+        "date": "2026-11-12",
+        "start": "14:00",
+        "end": "16:00"
+      },
+      {
+        "date": "2026-11-13",
+        "start": "08:30",
+        "end": "10:30"
+      },
+      {
+        "date": "2026-11-13",
+        "start": "14:00",
+        "end": "16:00"
+      }
+    ],
+    "time_limit": 30,
+    "font_scale": 1,
+    "score_field": ""
+  },
+  "seats": {
+    "base": {
+      "s7-001": {
+        "room_id": "r01",
+        "seat": 1,
+        "locked": false
+      },
+      "s7-002": {
+        "room_id": "r01",
+        "seat": 2,
+        "locked": false
+      },
+      "s7-003": {
+        "room_id": "r01",
+        "seat": 3,
+        "locked": false
+      },
+      "s7-004": {
+        "room_id": "r01",
+        "seat": 4,
+        "locked": false
+      },
+      "s7-005": {
+        "room_id": "r01",
+        "seat": 5,
+        "locked": false
+      },
+      "s7-006": {
+        "room_id": "r01",
+        "seat": 6,
+        "locked": false
+      },
+      "s8-001": {
+        "room_id": "r02",
+        "seat": 1,
+        "locked": false
+      },
+      "s8-002": {
+        "room_id": "r02",
+        "seat": 2,
+        "locked": false
+      },
+      "s8-003": {
+        "room_id": "r02",
+        "seat": 3,
+        "locked": false
+      },
+      "s8-004": {
+        "room_id": "r02",
+        "seat": 4,
+        "locked": false
+      },
+      "s8-005": {
+        "room_id": "r02",
+        "seat": 5,
+        "locked": false
+      },
+      "s8-006": {
+        "room_id": "r02",
+        "seat": 6,
+        "locked": false
+      }
+    }
+  },
+  "invigilation": {
+    "r01|2026-11-12|08:30|10:00": [
+      {
+        "teacher_id": "t01",
+        "locked": false
+      },
+      {
+        "teacher_id": "t02",
+        "locked": false
+      }
+    ],
+    "r01|2026-11-12|14:00|15:30": [
+      {
+        "teacher_id": "t01",
+        "locked": false
+      },
+      {
+        "teacher_id": "t02",
+        "locked": false
+      }
+    ],
+    "r01|2026-11-13|08:30|10:00": [
+      {
+        "teacher_id": "t01",
+        "locked": false
+      },
+      {
+        "teacher_id": "t02",
+        "locked": false
+      }
+    ],
+    "r02|2026-11-12|08:30|10:00": [
+      {
+        "teacher_id": "t03",
+        "locked": false
+      },
+      {
+        "teacher_id": "t04",
+        "locked": false
+      }
+    ],
+    "r02|2026-11-12|14:00|15:30": [
+      {
+        "teacher_id": "t03",
+        "locked": false
+      },
+      {
+        "teacher_id": "t04",
+        "locked": false
+      }
+    ],
+    "r02|2026-11-13|08:30|10:00": [
+      {
+        "teacher_id": "t03",
+        "locked": false
+      },
+      {
+        "teacher_id": "t04",
+        "locked": false
+      }
+    ]
+  },
+  "history": [],
+  "number_sources": {
+    "s7-001": {
+      "prefix": "001",
+      "room_id": "r01",
+      "number": "0010101"
+    },
+    "s7-002": {
+      "prefix": "001",
+      "room_id": "r01",
+      "number": "0010102"
+    },
+    "s7-003": {
+      "prefix": "001",
+      "room_id": "r01",
+      "number": "0010103"
+    },
+    "s7-004": {
+      "prefix": "001",
+      "room_id": "r01",
+      "number": "0010104"
+    },
+    "s7-005": {
+      "prefix": "001",
+      "room_id": "r01",
+      "number": "0010105"
+    },
+    "s7-006": {
+      "prefix": "001",
+      "room_id": "r01",
+      "number": "0010106"
+    },
+    "s8-001": {
+      "prefix": "001",
+      "room_id": "r02",
+      "number": "0010201"
+    },
+    "s8-002": {
+      "prefix": "001",
+      "room_id": "r02",
+      "number": "0010202"
+    },
+    "s8-003": {
+      "prefix": "001",
+      "room_id": "r02",
+      "number": "0010203"
+    },
+    "s8-004": {
+      "prefix": "001",
+      "room_id": "r02",
+      "number": "0010204"
+    },
+    "s8-005": {
+      "prefix": "001",
+      "room_id": "r02",
+      "number": "0010205"
+    },
+    "s8-006": {
+      "prefix": "001",
+      "room_id": "r02",
+      "number": "0010206"
+    }
+  },
+  "number_history": [],
+  "revision": 0
+}

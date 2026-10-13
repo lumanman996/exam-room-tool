@@ -1,0 +1,9 @@
+-r requirements.txt
+pytest>=8
+playwright>=1.50
+pyinstaller>=6
+pillow>=10
+pypdf>=5,<7
+tzdata>=2025.1
+Cython>=3,<4
+setuptools>=75

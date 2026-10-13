@@ -15,6 +15,8 @@ import time
 
 from ortools.sat.python import cp_model
 
+from . import diagnosis
+
 
 def _int(value, default=0):
     try:
@@ -380,7 +382,7 @@ def schedule(plan,cancel=None,progress=None):
                 if locked[rooms[ri]['id']]: model.add(n>=locked[rooms[ri]['id']]*selected[key])
                 allocations[key,ri]=n;used[key,ri]=u;counts.append(n)
             model.add(sum(counts)==len(members)*selected[key])
-        if not choices[ei]: return _result(plan,'infeasible','可用时段太短、考场容量不足或锁定时间不可用')
+        if not choices[ei]: return _result(plan,'infeasible',diagnosis.schedule_slot(plan,ex,members,windows))
         model.add_exactly_one(selected[k] for k,e in choices[ei])
     flat=[(ei,k,e) for ei,opts in choices.items() for k,e in opts]
     for (ei,k,a),(ej,j,b) in combinations(flat,2):
@@ -426,7 +428,7 @@ def schedule(plan,cancel=None,progress=None):
             for k,e in opts:
                 if solver.value(selected[k]):
                     q['exams'][ei].update(date=e[0],start=f'{e[1]//60:02}:{e[1]%60:02}',end=f'{e[2]//60:02}:{e[2]%60:02}')
-    return _result(q,status,_message(status))
+    return _result(q,status,diagnosis.schedule(plan,windows) if status=='infeasible' else _message(status))
 
 
 def _cohort_conflict(a,b):
@@ -497,7 +499,7 @@ def assign_seats(plan,cancel=None,progress=None,exam_id=None):
                 model.add(sum(room_vars)>=u);model.add(sum(room_vars)<=len(room_vars)*u)
         for p,sid in locked_positions.items():
             if (gi,*p) not in variables: return _result(plan,'infeasible','锁定座位不可用，或与其他考试冲突')
-        if len(all_vars)<len(members): return _result(plan,'infeasible','可用座位不足，或考试时间与锁定条件冲突')
+        if len(all_vars)<len(members): return _result(plan,'infeasible',diagnosis.seats(plan,target and key))
         model.add(sum(all_vars)==len(members))
     for (rid,seat),entries in position_groups.items():
         for (a,x),(b,y) in combinations(entries,2):
@@ -513,7 +515,7 @@ def assign_seats(plan,cancel=None,progress=None,exam_id=None):
     # Prefer earlier rooms and seats without claiming class separation is globally optimal.
     model.minimize(sum((order[rid]*1000+n)*v for (gi,rid,n),v in variables.items()))
     solver,status=_solve(model,plan,cancel,progress)
-    if status not in ('optimal','feasible'): return _result(plan,status,_message(status))
+    if status not in ('optimal','feasible'): return _result(plan,status,diagnosis.seats(plan,target and key) if status=='infeasible' else _message(status))
     q=deepcopy(plan);mapping={};rng=random.Random(_int(plan.get('settings',{}).get('seed'),42));mode=plan.get('settings',{}).get('mode','class')
     positions_by_group={gi:sorted([(rid,n) for (g,rid,n),v in variables.items() if g==gi and solver.value(v)],key=lambda p:(order[p[0]],p[1])) for gi in range(len(groups))}
     # Interleave compatible grades in ascending seat order. Cohorts with different

@@ -1,4 +1,8 @@
-"""许可公开入口；正式包必须加载本产品编译模块，否则只锁导出。"""
+"""许可公开入口。
+
+试用与激活的实现在 _license_impl.py，不在公开仓库里，只在打包正式安装包时编译成机器码放进去。
+源码运行缺少它时不做限制；正式包里缺少或换成源码则锁住导出，查看、编排和保存仍可使用。
+"""
 import base64
 import importlib
 import hashlib
@@ -39,9 +43,20 @@ class BlockedLicense:
     def require_export(self):raise PermissionError(self.message)
 
 
+class OpenLicense:
+    """公开源码运行且没有验证模块：不做限制。"""
+    def __init__(self,contact=''):self.contact=contact
+    def status(self):
+        return dict(state='open',canExport=True,daysLeft=0,expiry=None,machine='',contact=self.contact,message='源码开发版')
+    def activate(self,code):raise ValueError('源码开发版不需要激活。')
+    def require_export(self):pass
+
+
 class License:
     """Compatible constructor for fictional tests and existing offline licence state."""
     def __init__(self,directory,public_key,machine=None,clock=None,contact=''):
+        if _impl is None and not paths.FROZEN:
+            self.delegate=OpenLicense(contact);return
         broken=_impl is None or (paths.FROZEN and (module_kind()!='native' or public_key is None))
         self.delegate=BlockedLicense(contact=contact) if broken else _impl.License(directory,public_key,machine,clock,contact)
     def __getattr__(self,name):return getattr(self.delegate,name)
@@ -56,7 +71,15 @@ class License:
         if not status['canExport']:raise PermissionError(status['message'])
 
 
+def _contact():
+    try:
+        value=json.loads(paths.PUBLIC.read_text(encoding='utf-8')).get('contact','')
+        return value if isinstance(value,str) else ''
+    except (OSError,ValueError,AttributeError):return ''
+
+
 def configured():
+    if _impl is None and not paths.FROZEN:return OpenLicense(_contact())
     if _impl is None or (paths.FROZEN and module_kind()!='native'):return BlockedLicense()
     public=None;contact=''
     if paths.PUBLIC.exists():

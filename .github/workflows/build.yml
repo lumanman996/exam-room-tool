@@ -64,6 +64,18 @@ jobs:
           PY
       - name: 安装运行和验测依赖
         run: python -m pip install -r requirements-dev.txt 2>&1 | tee output/ci/dependencies.log
+      - name: 放入试用与激活模块（来自保密项，公开仓库里没有）
+        env:
+          LICENSE_IMPL: ${{ secrets.LICENSE_IMPL }}
+        run: |
+          python - <<'PY'
+          import base64,os
+          from pathlib import Path
+          data=os.environ.get('LICENSE_IMPL','')
+          if not data:raise SystemExit('缺少保密项 LICENSE_IMPL，不能构建正式候选包。')
+          Path('exam_room/_license_impl.py').write_bytes(base64.b64decode(data))
+          print('license module: True')
+          PY
       - name: 安装浏览器验测运行时
         if: inputs.reference_run_id == ''
         run: python -m playwright install chromium 2>&1 | tee output/ci/browser-install.log

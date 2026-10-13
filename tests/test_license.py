@@ -1,6 +1,10 @@
 import json
 from datetime import datetime, timedelta, timezone
 from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
+import pytest
+
+# 验证模块不在公开仓库里；没有它时（例如公开源码或 CI 测试阶段）跳过这些测试。
+pytest.importorskip('exam_room._license_impl')
 from exam_room.licensing import License, sign_code
 
 

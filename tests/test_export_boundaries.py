@@ -1,5 +1,5 @@
 from datetime import datetime,timedelta,timezone
-import io,json,zipfile
+import importlib.util,io,json,zipfile
 from pathlib import Path
 import pytest
 from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
@@ -8,7 +8,11 @@ from exam_room.server import App
 from exam_room import updater,pdf,engine
 from test_backend_hardening import ready
 
+# 试用与激活的实现不在公开仓库里；没有它时跳过只针对试用和激活的测试。
+needs_impl=pytest.mark.skipif(importlib.util.find_spec('exam_room._license_impl') is None,reason='没有试用与激活验证模块')
 
+
+@needs_impl
 def test_exact_three_day_boundary_blocks_print_but_not_edit_and_save(tmp_path):
     key=Ed25519PrivateKey.generate();now=datetime(2026,10,7,tzinfo=timezone.utc)
     lic=License(tmp_path/'lic',key.public_key(),machine='SYNTHETIC',clock=lambda:now)
@@ -21,6 +25,7 @@ def test_exact_three_day_boundary_blocks_print_but_not_edit_and_save(tmp_path):
     app.api_demo({});assert engine.assign_seats(app.plan)['status'] in ('optimal','feasible')
 
 
+@needs_impl
 @pytest.mark.parametrize('contents',['[]','[1]','"wrong"','null','1','{"first":"wrong"}'])
 def test_corrupt_license_never_restarts_free_trial(tmp_path,contents):
     key=Ed25519PrivateKey.generate();tmp_path.mkdir(exist_ok=True);(tmp_path/'license.json').write_text(contents)
@@ -29,6 +34,7 @@ def test_corrupt_license_never_restarts_free_trial(tmp_path,contents):
     assert not lic.status()['canExport']
 
 
+@needs_impl
 def test_wrong_product_and_expiry_and_upgraded_license_persists(tmp_path):
     key=Ed25519PrivateKey.generate();now=datetime(2026,10,7,tzinfo=timezone.utc);clock=lambda:now
     lic=License(tmp_path,key.public_key(),machine='TEST',clock=clock)

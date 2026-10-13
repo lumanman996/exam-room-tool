@@ -5,6 +5,10 @@ import json
 import pytest
 from tools.testbench.common import service,assert_excel,assert_plan
 from tools.testbench.usability import fictional_plan,physical_labels,physical_snapshot,business,saved,atomic_failure,assert_seating_html
+import importlib.util
+
+# 试用与激活的实现不在公开仓库里；没有它时跳过只针对试用和激活的测试。
+needs_impl=pytest.mark.skipif(importlib.util.find_spec('exam_room._license_impl') is None,reason='没有试用与激活验证模块')
 
 
 def save(client,p):return client.call('save',{'plan':p,'revision':p['revision']})['plan']
@@ -194,6 +198,7 @@ def test_student_adjustment_lock_disabled_and_preview_revision(tmp_path):
         assert saved(c)['seats']['base']['s7-002']['seat']==7
 
 
+@needs_impl
 def test_fictional_licence_compatibility_expiry_wrong_product_and_reopen(tmp_path):
     from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
     from exam_room.licensing import License,b64,sign_code

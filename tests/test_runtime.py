@@ -9,7 +9,7 @@ def test_runtime_home_and_key_isolation(tmp_path,monkeypatch):
     assert a.root==tmp_path
     a.api_new({'name':'独立自检'})
     assert (tmp_path/'data'/'plans'/f'{a.plan["id"]}.json').exists()
-    assert a.license.dir==tmp_path/'license'
+    if hasattr(a.license,'dir'):assert a.license.dir==tmp_path/'license'
 
 
 def test_update_finds_current_package_case_insensitively(monkeypatch):

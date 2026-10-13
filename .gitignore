@@ -8,6 +8,11 @@ build/
 dist/
 admin/
 exam_room/_license_public.json
+
+# 试用与激活：验证模块、私钥、发码工具 —— 只在本机保存，绝不上传
+exam_room/_license_impl.py
+exam_room/_license_impl.*
+exam_room/_build_info.py
 *.spec
 .DS_Store
 test-results/

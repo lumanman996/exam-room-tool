@@ -1,5 +1,10 @@
 import base64, json, urllib.request
 from exam_room.server import start
+import importlib.util
+import pytest
+
+# 试用与激活的实现不在公开仓库里；没有它时跳过只针对试用和激活的测试。
+needs_impl=pytest.mark.skipif(importlib.util.find_spec('exam_room._license_impl') is None,reason='没有试用与激活验证模块')
 
 def call(url, token, name, body=None):
     req=urllib.request.Request(url+'api/'+name,data=json.dumps(body or {}).encode(),headers={'X-Token':token,'Content-Type':'application/json'})
@@ -38,6 +43,7 @@ def test_settings_scripts_are_served(tmp_path,monkeypatch):
     finally:httpd.shutdown()
 
 
+@needs_impl
 def test_expired_trial_keeps_plan_operations_but_blocks_export(tmp_path):
     from datetime import datetime,timedelta,timezone
     from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey

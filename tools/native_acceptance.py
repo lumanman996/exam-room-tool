@@ -63,7 +63,7 @@ def baseline_changes(reference,current):
 
 def validate_reference(data):
     phases=data.get('phase_runs',[]);env=data.get('environment',{})
-    required={'资料准备','源码回归','前端单元','scenarios','browser','scale'}
+    required={'资料准备','源码回归','前端单元','scenarios','随机对抗','browser','scale'}
     valid=(data.get('mode')=='full' and bool(data.get('finished_at')) and bool(data.get('cases'))
         and all(x.get('status')=='通过' for x in data.get('cases',[]))
         and required=={x.get('id') for x in phases}

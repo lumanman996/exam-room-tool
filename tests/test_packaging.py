@@ -192,7 +192,7 @@ def reference_data():
         summary={'通过':61,'失败':0,'环境阻塞':0,'未运行':0},
         environment=dict(system='Windows-2022Server-10.0.20348-SP0',git_commit='9'*40,
             source_sha256_before=files.copy(),source_sha256_after=files.copy()),
-        phase_runs=[dict(id=k,status='通过',details={'exit_code':0,'timeout':False}) for k in ('资料准备','源码回归','前端单元','scenarios','browser','scale')])
+        phase_runs=[dict(id=k,status='通过',details={'exit_code':0,'timeout':False}) for k in ('资料准备','源码回归','前端单元','scenarios','随机对抗','browser','scale')])
     baseline=r'D:\a\exam-room-tool\output\testbench\reference\report.json'
     cases=[dict(id='NATIVE-baseline',status='通过',details={'reference':baseline,'changed_product_files':[]}),
            dict(id='NATIVE-host-first',status='通过'),dict(id='NATIVE-host-reopen',status='通过')]

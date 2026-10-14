@@ -63,3 +63,14 @@ def test_baseline_must_be_finished_full_not_prepare_or_partial():
         api().validate_reference({'mode':'prepare','cases':[{'status':'通过'}]})
     with pytest.raises(api().NativeBlocked,match='完整'):
         api().validate_reference({'mode':'full','finished_at':'done','cases':[]})
+
+
+def test_baseline_requires_every_full_phase_including_randomized():
+    phases=('资料准备','源码回归','前端单元','scenarios','随机对抗','browser','scale')
+    def report(ids):
+        return {'mode':'full','finished_at':'done','cases':[{'status':'通过'}],
+                'phase_runs':[{'id':k,'details':{'exit_code':0}} for k in ids],
+                'environment':{'source_sha256_before':{'a':'1'},'source_sha256_after':{'a':'1'}}}
+    assert api().validate_reference(report(phases))=={'a':'1'}
+    with pytest.raises(api().NativeBlocked,match='完整'):
+        api().validate_reference(report([k for k in phases if k!='随机对抗']))

@@ -109,11 +109,10 @@ def verify_windows_reports(full,native,terminal,baseline,full_directory,current)
     from tools.native_acceptance import validate_reference,NativeBlocked
     try:
         reference=validate_reference(full)
-        if (len(full['cases'])!=61 or len(full['phase_runs'])!=6
-            or full['summary']!={'通过':61,'失败':0,'环境阻塞':0,'未运行':0}
+        if (full.get('summary')!={'通过':len(full['cases']),'失败':0,'环境阻塞':0,'未运行':0}
             or not full['environment']['system'].startswith('Windows-')
             or any(p['details'].get('timeout') is not False for p in full['phase_runs'])):
-            raise ValueError('基线不是完成且通过的 Windows 61 项完整验测。')
+            raise ValueError('基线不是完成且通过的 Windows 完整验测。')
         if set(reference)!=set(current):raise ValueError('受验测文件范围有新增或删除，不能复用。')
         changed=sorted(k for k in reference if reference[k]!=current[k])
         if set(changed)-{'tests/test_packaging.py'}:raise ValueError('业务、资料、工具或其他测试有变化，不能复用：'+', '.join(changed))

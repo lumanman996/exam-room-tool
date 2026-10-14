@@ -29,9 +29,13 @@ def write_json(path, value):
 
 
 def fixed(plan, ident, name):
+    # 场景资料按旧格式保存、不写年级清单，读入时由程序从学生和考试推出年级（并提示复核），
+    # 与仓库里已有的资料一致。new_plan() 自带的空清单若写进文件，所有年级都会“不在清单中”。
+    plan = {k: v for k, v in plan.items() if k not in ('grades', 'grade_review_required')}
     p = normalize_plan(plan)
     p.update(id=ident, name=name, school='验测中学（完全虚构）',
              created_at=STAMP, updated_at=STAMP, revision=0)
+    p.pop('grades'); p.pop('grade_review_required')
     return p
 
 

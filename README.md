@@ -45,7 +45,7 @@ uv pip install -r requirements-dev.txt --python .venv/bin/python
 .venv/bin/python tools/run_testbench.py --mode full
 ```
 
-`quick` 运行资料准备、Python 和前端单元回归及 HTTP 场景；`full` 再运行真实浏览器流程及 1,500 人规模编排。报告位于 `output/testbench/<运行编号>/`；失败、环境阻塞或执行期间代码变化不能放行。准备检查可单独运行：`.venv/bin/python tools/prepare_testkit.py --verify-only`。
+`quick` 运行资料准备、Python 和前端单元回归、HTTP 场景及 8 组随机对抗；`full` 再运行真实浏览器流程、40 组随机对抗及 1,500 人规模编排。随机对抗用独立检查器核对随机虚构方案，单独复现某一组用 `--case PROP-<种子>`。报告位于 `output/testbench/<运行编号>/`；失败、环境阻塞或执行期间代码变化不能放行。准备检查可单独运行：`.venv/bin/python tools/prepare_testkit.py --verify-only`。
 
 ## 最终构建
 

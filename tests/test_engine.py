@@ -182,6 +182,37 @@ def test_pupil_without_base_exam_reuses_seats_of_seated_special_exam():
     assert not (errors(q) & {'seat_missing','seat_invalid','seat_duplicate','room_overlap','mixed_grade'})
 
 
+def reserve_plan():
+    # 第 1 考场 6 座、第 2 考场 2 座；七、八年级同时考试且不混排。
+    # 七年级 2 人考固定座位的语文，八年级 6 人考单独排座的英语。
+    p=fixture_plan(8)
+    for s in p['students'][2:]:s.update(grade='八',class_name='八1')
+    p['grades']=['七','八']
+    p['rooms'].append(dict(p['rooms'][0],id='r2',code='02',name='虚构教室2',rows=1,cols=2,capacity=2))
+    p['exams'].append(dict(p['exams'][0],id='en',grade='八',subject='英语',special_seating=True))
+    return p
+
+
+@pytest.mark.parametrize('rule',['seat','serial'])
+def test_fixed_seats_leave_room_for_unseated_special_exam(rule):
+    p=reserve_plan();p['settings']['number_rule']=rule
+    p=good(engine.assign_seats(p))
+    assert {p['seats']['base'][s]['room_id'] for s in ('s0','s1')}=={'r2'}
+    q=good(engine.assign_seats(p,exam_id='en'))
+    assert {x['room_id'] for x in q['seats']['en'].values()}=={'r1'}
+    assert not (errors(q) & {'seat_missing','seat_duplicate','room_overlap','mixed_grade','capacity'})
+
+
+def test_fixed_seats_still_saved_when_special_exam_cannot_fit():
+    p=reserve_plan();p['settings']['number_rule']='serial'
+    p['students'].append(dict(p['students'][-1],id='s8',name='测试学生8',number='00009'))
+    r=engine.assign_seats(p)
+    q=good(r)
+    assert set(q['seats']['base'])=={'s0','s1'}
+    assert '英语' in r['message'] and '排不下' in r['message']
+    assert engine.assign_seats(q,exam_id='en')['status']=='infeasible'
+
+
 def test_class_seating_avoids_same_desk_where_possible():
     p=fixture_plan(6)
     p['rooms'][0].update(rows=1,cols=3,per_desk=2)

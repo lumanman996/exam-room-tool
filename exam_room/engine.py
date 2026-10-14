@@ -510,48 +510,76 @@ def assign_seats(plan,cancel=None,progress=None,exam_id=None):
         for s in participants(plan,e):
             pos=_mapping(plan,e).get(s['id'])
             if pos: external.append((s,_event(e),pos))
-    model=cp_model.CpModel();variables={};used={};fixed={};position_groups=defaultdict(list)
-    for gi,((grade,events),members) in enumerate(groups):
-        all_vars=[];locked_positions={}
-        for s in members:
-            pos=old.get(s['id'],{})
-            if pos.get('locked'):
-                p=(pos.get('room_id'),pos.get('seat'))
-                if p in locked_positions: return _result(plan,'infeasible','锁定座位重复，请先调整')
-                locked_positions[p]=s['id'];fixed[s['id']]=deepcopy(pos)
-        for r in rooms:
-            rid=r['id']
-            if any(not _available(r,e) for e in events): continue
-            incompatible=any(pos.get('room_id')==rid and any(not _compatible(plan,grade,e,s['grade'],other) for e in events) for s,other,pos in external)
-            if incompatible: continue
-            room_vars=[]
-            for seat in layouts[rid]:
-                number=seat['seat']
-                if events and any(pos.get('room_id')==rid and pos.get('seat')==number and _cohort_conflict(events,(other,)) for s,other,pos in external): continue
-                v=model.new_bool_var(f'seat_{gi}_{rid}_{number}')
-                variables[gi,rid,number]=v;room_vars.append(v);all_vars.append(v);position_groups[rid,number].append((gi,v))
-                if (rid,number) in locked_positions: model.add(v==1)
-            if room_vars:
-                u=model.new_bool_var(f'room_{gi}_{rid}');used[gi,rid]=u
-                model.add(sum(room_vars)>=u);model.add(sum(room_vars)<=len(room_vars)*u)
-        for p,sid in locked_positions.items():
-            if (gi,*p) not in variables: return _result(plan,'infeasible','锁定座位不可用，或与其他考试冲突')
-        if len(all_vars)<len(members): return _result(plan,'infeasible',diagnosis.seats(plan,target and key))
-        model.add(sum(all_vars)==len(members))
-    for (rid,seat),entries in position_groups.items():
-        for (a,x),(b,y) in combinations(entries,2):
-            if exclusive or _cohort_conflict(groups[a][0][1],groups[b][0][1]): model.add(x+y<=1)
-    for a,b in combinations(range(len(groups)),2):
-        (ga,ea),_ = groups[a];(gb,eb),_=groups[b]
-        # 固定座位下没有场次的学生只需不重复的座号来生成考号，不会在场内同时考试，可与任何组同场。
-        incompatible=bool(ea and eb) and any(not _compatible(plan,ga,x,gb,y) for x in ea for y in eb)
-        if incompatible:
+    # 排固定座位时，把还没排的单独排座科目一并放进模型，只验证它们一定排得下，不替它们落座。
+    # 这样固定座位不会占掉它们需要的考场或座位；单独编排这些科目时再实际安排。
+    reserve=[]
+    if not target:
+        for e in exams:
+            if not e.get('special_seating'):continue
+            done=plan.get('seats',{}).get(e['id'],{})
+            pending=defaultdict(list)
+            for s in participants(plan,e):
+                if s['id'] not in done:pending[(s['grade'],(_event(e),))].append(s)
+            reserve+=[(cohort,members,e) for cohort,members in pending.items()]
+    def build(reserved):
+        model=cp_model.CpModel();variables={};used={};fixed={};position_groups=defaultdict(list)
+        cohorts=groups+[(cohort,members) for cohort,members,_ in reserved];base_count=len(groups)
+        for gi,((grade,events),members) in enumerate(cohorts):
+            all_vars=[];locked_positions={}
+            for s in (members if gi<base_count else ()):
+                pos=old.get(s['id'],{})
+                if pos.get('locked'):
+                    p=(pos.get('room_id'),pos.get('seat'))
+                    if p in locked_positions: return None,None,None,None,_result(plan,'infeasible','锁定座位重复，请先调整')
+                    locked_positions[p]=s['id'];fixed[s['id']]=deepcopy(pos)
             for r in rooms:
                 rid=r['id']
-                if (a,rid) in used and (b,rid) in used: model.add(used[a,rid]+used[b,rid]<=1)
-    # Prefer earlier rooms and seats without claiming class separation is globally optimal.
-    model.minimize(sum((order[rid]*1000+n)*v for (gi,rid,n),v in variables.items()))
-    solver,status=_solve(model,plan,cancel,progress)
+                if any(not _available(r,e) for e in events): continue
+                incompatible=any(pos.get('room_id')==rid and any(not _compatible(plan,grade,e,s['grade'],other) for e in events) for s,other,pos in external)
+                if incompatible: continue
+                room_vars=[]
+                for seat in layouts[rid]:
+                    number=seat['seat']
+                    if events and any(pos.get('room_id')==rid and pos.get('seat')==number and _cohort_conflict(events,(other,)) for s,other,pos in external): continue
+                    v=model.new_bool_var(f'seat_{gi}_{rid}_{number}')
+                    variables[gi,rid,number]=v;room_vars.append(v);all_vars.append(v);position_groups[rid,number].append((gi,v))
+                    if (rid,number) in locked_positions: model.add(v==1)
+                if room_vars:
+                    u=model.new_bool_var(f'room_{gi}_{rid}');used[gi,rid]=u
+                    model.add(sum(room_vars)>=u);model.add(sum(room_vars)<=len(room_vars)*u)
+            for p,sid in locked_positions.items():
+                if (gi,*p) not in variables: return None,None,None,None,_result(plan,'infeasible','锁定座位不可用，或与其他考试冲突')
+            if len(all_vars)<len(members):
+                if gi>=base_count:return None,None,None,None,'reserve'
+                return None,None,None,None,_result(plan,'infeasible',diagnosis.seats(plan,target and key))
+            model.add(sum(all_vars)==len(members))
+        for (rid,seat),entries in position_groups.items():
+            for (a,x),(b,y) in combinations(entries,2):
+                ea,eb=cohorts[a][0][1],cohorts[b][0][1]
+                if a<base_count and b<base_count:clash=exclusive or _cohort_conflict(ea,eb)
+                # 预留给单独排座科目的位置，只和同一时间真有人坐的座位冲突；没有固定座位场次的学生不会在场内。
+                else:clash=bool(ea and eb) and any(_overlap(x,y) for x in ea for y in eb)
+                if clash: model.add(x+y<=1)
+        for a,b in combinations(range(len(cohorts)),2):
+            (ga,ea),_ = cohorts[a];(gb,eb),_=cohorts[b]
+            # 固定座位下没有场次的学生只需不重复的座号来生成考号，不会在场内同时考试，可与任何组同场。
+            incompatible=bool(ea and eb) and any(not _compatible(plan,ga,x,gb,y) for x in ea for y in eb)
+            if incompatible:
+                for r in rooms:
+                    rid=r['id']
+                    if (a,rid) in used and (b,rid) in used: model.add(used[a,rid]+used[b,rid]<=1)
+        # Prefer earlier rooms and seats without claiming class separation is globally optimal.
+        model.minimize(sum((order[rid]*1000+n)*v for (gi,rid,n),v in variables.items() if gi<base_count))
+        solver,status=_solve(model,plan,cancel,progress)
+        return solver,status,variables,fixed,None
+    solver,status,variables,fixed,failed=build(reserve)
+    notice=''
+    if reserve and (failed=='reserve' or status in ('infeasible','timeout')):
+        # 固定座位和单独排座的科目无法同时排下（或限时内找不到）：只排固定座位，并说明后面哪些科目可能排不下。
+        names='、'.join(dict.fromkeys(e.get('subject') or e['id'] for _,_,e in reserve))
+        notice=f'注意：单独排座的科目（{names}）在这些固定座位下可能排不下，可增加考场、调整这些科目的时间，或延长求解时间后重新编排。'
+        solver,status,variables,fixed,failed=build([])
+    if isinstance(failed,dict):return failed
     if status not in ('optimal','feasible'): return _result(plan,status,diagnosis.seats(plan,target and key) if status=='infeasible' else _message(status))
     q=deepcopy(plan);mapping={};rng=random.Random(_int(plan.get('settings',{}).get('seed'),42));mode=plan.get('settings',{}).get('mode','class')
     positions_by_group={gi:sorted([(rid,n) for (g,rid,n),v in variables.items() if g==gi and solver.value(v)],key=lambda p:(order[p[0]],p[1])) for gi in range(len(groups))}
@@ -605,7 +633,9 @@ def assign_seats(plan,cancel=None,progress=None,exam_id=None):
         if cancel is not None and cancel.is_set(): return _result(plan,'cancelled','已取消编排')
     q.setdefault('seats',{})[key]=mapping
     if target: next(e for e in q['exams'] if e['id']==key)['special_seating']=True
-    return _result(q,'feasible','座位编排完成；已保留锁定座位，并尽量分散同班学生')
+    done='座位编排完成；已保留锁定座位，并尽量分散同班学生'
+    if reserve and not notice:done+='；已为单独排座的科目预留位置'
+    return _result(q,'feasible',done+('。'+notice if notice else ''))
 
 
 def _separate_classes(members,mapping,rooms,rng,cancel):

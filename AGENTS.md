@@ -22,3 +22,10 @@
 - 涉及两个子系统时，只协调有实际依赖的负责人；总协调先说明影响范围，再决定是否需要独立测试介入。
 - 只有跨系统改动、关键规则或数据安全风险、完整流程联调及阶段交付，才安排相关各方统一验证。已有通过证据可复用，未变化且无新增疑点的测试不重复运行。
 - 当前优先交付 Windows 程序包，由用户在 Windows 电脑详细测试；停止额外 Mac 验收和开发。Windows 构建及必要自检完成、程序包交给用户后，停止其他操作，等待用户反馈；不自动开展下一轮开发、构建或测试。
+
+## Cursor Cloud specific instructions
+
+- 使用环境里的 `.venv`：`.venv/bin/python`。系统需要 `python3.12-venv`；Playwright Chromium 装在用户缓存中，供验测台使用。
+- 自检：`.venv/bin/python -m exam_room --selftest`。规则回归：`.venv/bin/python -m pytest -q`。
+- 本环境没有 PyGObject / WebKit，原生窗口打不开。查看界面用 `.venv/bin/python -m exam_room --browser`。服务只监听 `127.0.0.1`，端口随机，启动后用 `ss` 查看。设置 `EXAM_ROOM_HOME` 可把方案放到隔离目录。页面每 10 秒会 ping，保持浏览器开着服务才不会退出。
+- 开发过程不构建桌面安装包。正式包还需要仓库外的许可公钥，不要把私钥或真实资料放进环境。
